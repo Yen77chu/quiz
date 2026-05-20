@@ -1,0 +1,1043 @@
+{\rtf1\ansi\ansicpg950\cocoartf2867
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fnil\fcharset0 HelveticaNeue;\f2\fnil\fcharset136 PingFangTC-Regular;
+}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 <!DOCTYPE html>\
+<html lang="zh-TW">\
+<head>\
+<meta charset="UTF-8">\
+<meta name="viewport" content="width=device-width, initial-scale=1.0">\
+<title>\uc0\u21629 \u36939 \u30340 \u30456 \u36935 \u65372 \u20320 \u20497 \u30340 \u25925 \u20107 </title>\
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700;900&family=Bebas+Neue&family=Noto+Sans+TC:wght@300;400;700&display=swap" rel="stylesheet">\
+<style>\
+  :root \{\
+    --neon-pink: #ff2d78;\
+    --neon-cyan: #00f5ff;\
+    --neon-purple: #bf5fff;\
+    --neon-gold: #ffd700;\
+    --dark-bg: #06030f;\
+    --dark-card: #0e0820;\
+    --glow-pink: 0 0 20px #ff2d78aa, 0 0 40px #ff2d7855;\
+    --glow-cyan: 0 0 20px #00f5ffaa, 0 0 40px #00f5ff55;\
+    --glow-purple: 0 0 20px #bf5fffaa, 0 0 40px #bf5fff55;\
+  \}\
+\
+  * \{ margin: 0; padding: 0; box-sizing: border-box; \}\
+\
+  body \{\
+    background: var(--dark-bg);\
+    color: #fff;\
+    font-family: 'Noto Sans TC', sans-serif;\
+    min-height: 100vh;\
+    overflow-x: hidden;\
+    cursor: default;\
+  \}\
+\
+  /* Animated background grid */\
+  body::before \{\
+    content: '';\
+    position: fixed;\
+    inset: 0;\
+    background-image:\
+      linear-gradient(rgba(0,245,255,0.04) 1px, transparent 1px),\
+      linear-gradient(90deg, rgba(0,245,255,0.04) 1px, transparent 1px);\
+    background-size: 60px 60px;\
+    animation: gridMove 20s linear infinite;\
+    pointer-events: none;\
+    z-index: 0;\
+  \}\
+\
+  @keyframes gridMove \{\
+    0% \{ transform: translateY(0); \}\
+    100% \{ transform: translateY(60px); \}\
+  \}\
+\
+  /* Floating particles */\
+  .particles \{\
+    position: fixed;\
+    inset: 0;\
+    pointer-events: none;\
+    z-index: 0;\
+    overflow: hidden;\
+  \}\
+  .particle \{\
+    position: absolute;\
+    width: 2px;\
+    height: 2px;\
+    border-radius: 50%;\
+    animation: float linear infinite;\
+  \}\
+  @keyframes float \{\
+    0% \{ transform: translateY(100vh) translateX(0); opacity: 0; \}\
+    10% \{ opacity: 1; \}\
+    90% \{ opacity: 1; \}\
+    100% \{ transform: translateY(-10vh) translateX(var(--drift)); opacity: 0; \}\
+  \}\
+\
+  .container \{\
+    position: relative;\
+    z-index: 1;\
+    max-width: 680px;\
+    margin: 0 auto;\
+    padding: 20px;\
+    min-height: 100vh;\
+    display: flex;\
+    flex-direction: column;\
+    align-items: center;\
+    justify-content: center;\
+  \}\
+\
+  /* ===== SCREENS ===== */\
+  .screen \{ display: none; width: 100%; animation: fadeIn 0.6s ease; \}\
+  .screen.active \{ display: flex; flex-direction: column; align-items: center; \}\
+  @keyframes fadeIn \{\
+    from \{ opacity: 0; transform: translateY(24px); \}\
+    to \{ opacity: 1; transform: translateY(0); \}\
+  \}\
+\
+  /* ===== INTRO SCREEN ===== */\
+  .intro-badge \{\
+    font-family: 'Bebas Neue', sans-serif;\
+    font-size: 11px;\
+    letter-spacing: 4px;\
+    color: var(--neon-cyan);\
+    text-shadow: var(--glow-cyan);\
+    border: 1px solid var(--neon-cyan);\
+    padding: 6px 16px;\
+    margin-bottom: 32px;\
+    animation: pulse 2s ease-in-out infinite;\
+  \}\
+  @keyframes pulse \{\
+    0%, 100% \{ opacity: 1; \}\
+    50% \{ opacity: 0.5; \}\
+  \}\
+\
+  .intro-title \{\
+    font-family: 'Noto Serif TC', serif;\
+    font-size: clamp(36px, 8vw, 64px);\
+    font-weight: 900;\
+    text-align: center;\
+    line-height: 1.15;\
+    margin-bottom: 8px;\
+    background: linear-gradient(135deg, #fff 0%, var(--neon-cyan) 50%, var(--neon-pink) 100%);\
+    -webkit-background-clip: text;\
+    -webkit-text-fill-color: transparent;\
+    background-clip: text;\
+  \}\
+\
+  .intro-sub \{\
+    font-family: 'Bebas Neue', sans-serif;\
+    font-size: clamp(18px, 4vw, 28px);\
+    letter-spacing: 6px;\
+    color: var(--neon-pink);\
+    text-shadow: var(--glow-pink);\
+    text-align: center;\
+    margin-bottom: 48px;\
+  \}\
+\
+  .intro-desc \{\
+    font-size: 14px;\
+    line-height: 2;\
+    color: rgba(255,255,255,0.65);\
+    text-align: center;\
+    max-width: 420px;\
+    margin-bottom: 48px;\
+    letter-spacing: 0.5px;\
+  \}\
+\
+  .neon-divider \{\
+    width: 120px;\
+    height: 1px;\
+    background: linear-gradient(90deg, transparent, var(--neon-cyan), transparent);\
+    margin: 0 auto 40px;\
+    box-shadow: var(--glow-cyan);\
+  \}\
+\
+  /* ===== BUTTONS ===== */\
+  .btn-main \{\
+    font-family: 'Noto Serif TC', serif;\
+    font-size: 16px;\
+    font-weight: 700;\
+    letter-spacing: 3px;\
+    color: var(--dark-bg);\
+    background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple));\
+    border: none;\
+    padding: 16px 48px;\
+    cursor: pointer;\
+    position: relative;\
+    clip-path: polygon(12px 0%, 100% 0%, calc(100% - 12px) 100%, 0% 100%);\
+    transition: all 0.3s ease;\
+    text-shadow: none;\
+  \}\
+  .btn-main:hover \{\
+    transform: translateY(-3px) scale(1.03);\
+    box-shadow: var(--glow-cyan);\
+    filter: brightness(1.2);\
+  \}\
+  .btn-main:active \{ transform: translateY(0) scale(0.98); \}\
+\
+  .btn-restart \{\
+    font-family: 'Noto Sans TC', sans-serif;\
+    font-size: 13px;\
+    letter-spacing: 2px;\
+    color: var(--neon-cyan);\
+    background: transparent;\
+    border: 1px solid var(--neon-cyan);\
+    padding: 10px 28px;\
+    cursor: pointer;\
+    margin-top: 16px;\
+    transition: all 0.3s ease;\
+  \}\
+  .btn-restart:hover \{\
+    background: rgba(0,245,255,0.1);\
+    box-shadow: var(--glow-cyan);\
+  \}\
+\
+  /* ===== QUIZ SCREEN ===== */\
+  .progress-wrap \{\
+    width: 100%;\
+    margin-bottom: 32px;\
+  \}\
+  .progress-label \{\
+    display: flex;\
+    justify-content: space-between;\
+    font-size: 11px;\
+    letter-spacing: 3px;\
+    color: rgba(255,255,255,0.4);\
+    margin-bottom: 10px;\
+    font-family: 'Bebas Neue', sans-serif;\
+  \}\
+  .progress-bar \{\
+    width: 100%;\
+    height: 2px;\
+    background: rgba(255,255,255,0.1);\
+    position: relative;\
+    overflow: hidden;\
+  \}\
+  .progress-fill \{\
+    height: 100%;\
+    background: linear-gradient(90deg, var(--neon-cyan), var(--neon-pink));\
+    box-shadow: var(--glow-pink);\
+    transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);\
+  \}\
+\
+  .scene-tag \{\
+    font-family: 'Bebas Neue', sans-serif;\
+    font-size: 11px;\
+    letter-spacing: 4px;\
+    color: var(--neon-purple);\
+    text-shadow: var(--glow-purple);\
+    margin-bottom: 16px;\
+    text-align: center;\
+  \}\
+\
+  .question-card \{\
+    width: 100%;\
+    background: var(--dark-card);\
+    border: 1px solid rgba(191,95,255,0.25);\
+    padding: 36px 32px;\
+    margin-bottom: 24px;\
+    position: relative;\
+    box-shadow: 0 0 40px rgba(191,95,255,0.1), inset 0 0 60px rgba(0,0,0,0.5);\
+  \}\
+  .question-card::before \{\
+    content: '';\
+    position: absolute;\
+    top: 0; left: 0; right: 0;\
+    height: 2px;\
+    background: linear-gradient(90deg, var(--neon-purple), var(--neon-pink), var(--neon-cyan));\
+    box-shadow: 0 0 12px var(--neon-pink);\
+  \}\
+\
+  .question-num \{\
+    font-family: 'Bebas Neue', sans-serif;\
+    font-size: 48px;\
+    color: rgba(191,95,255,0.2);\
+    position: absolute;\
+    top: 16px;\
+    right: 24px;\
+    line-height: 1;\
+  \}\
+\
+  .question-text \{\
+    font-family: 'Noto Serif TC', serif;\
+    font-size: clamp(17px, 3.5vw, 22px);\
+    font-weight: 700;\
+    line-height: 1.7;\
+    color: #fff;\
+    margin-bottom: 8px;\
+  \}\
+  .question-context \{\
+    font-size: 12px;\
+    color: rgba(255,255,255,0.4);\
+    line-height: 1.8;\
+    letter-spacing: 0.5px;\
+  \}\
+\
+  .options-grid \{\
+    width: 100%;\
+    display: flex;\
+    flex-direction: column;\
+    gap: 12px;\
+  \}\
+\
+  .option-btn \{\
+    width: 100%;\
+    background: rgba(255,255,255,0.03);\
+    border: 1px solid rgba(255,255,255,0.1);\
+    color: rgba(255,255,255,0.8);\
+    font-family: 'Noto Serif TC', serif;\
+    font-size: 15px;\
+    padding: 18px 24px;\
+    text-align: left;\
+    cursor: pointer;\
+    transition: all 0.25s ease;\
+    position: relative;\
+    overflow: hidden;\
+    line-height: 1.6;\
+  \}\
+  .option-btn::before \{\
+    content: '';\
+    position: absolute;\
+    left: 0; top: 0; bottom: 0;\
+    width: 3px;\
+    background: linear-gradient(180deg, var(--neon-cyan), var(--neon-pink));\
+    transform: scaleY(0);\
+    transition: transform 0.25s ease;\
+    box-shadow: var(--glow-cyan);\
+  \}\
+  .option-btn:hover \{\
+    background: rgba(0,245,255,0.07);\
+    border-color: rgba(0,245,255,0.4);\
+    color: #fff;\
+    transform: translateX(6px);\
+    box-shadow: inset 0 0 30px rgba(0,245,255,0.05);\
+  \}\
+  .option-btn:hover::before \{ transform: scaleY(1); \}\
+  .option-btn.selected \{\
+    background: rgba(255,45,120,0.1);\
+    border-color: var(--neon-pink);\
+    color: #fff;\
+    transform: translateX(6px);\
+    box-shadow: inset 0 0 30px rgba(255,45,120,0.08), var(--glow-pink);\
+    pointer-events: none;\
+  \}\
+  .option-btn.selected::before \{\
+    background: linear-gradient(180deg, var(--neon-pink), var(--neon-purple));\
+    transform: scaleY(1);\
+    box-shadow: var(--glow-pink);\
+  \}\
+  .option-label \{\
+    font-family: 'Bebas Neue', sans-serif;\
+    font-size: 11px;\
+    letter-spacing: 2px;\
+    color: var(--neon-cyan);\
+    margin-right: 12px;\
+    opacity: 0.7;\
+  \}\
+\
+  /* ===== LOADING ===== */\
+  .loading-wrap \{\
+    display: flex;\
+    flex-direction: column;\
+    align-items: center;\
+    gap: 24px;\
+  \}\
+  .loading-ring \{\
+    width: 80px;\
+    height: 80px;\
+    border: 2px solid rgba(255,255,255,0.05);\
+    border-top: 2px solid var(--neon-cyan);\
+    border-right: 2px solid var(--neon-pink);\
+    border-radius: 50%;\
+    animation: spin 1s linear infinite;\
+    box-shadow: var(--glow-cyan), inset 0 0 20px rgba(0,245,255,0.1);\
+  \}\
+  @keyframes spin \{ to \{ transform: rotate(360deg); \} \}\
+  .loading-text \{\
+    font-family: 'Noto Serif TC', serif;\
+    font-size: 14px;\
+    color: rgba(255,255,255,0.5);\
+    letter-spacing: 3px;\
+    animation: pulse 1.5s ease-in-out infinite;\
+  \}\
+\
+  /* ===== RESULT SCREEN ===== */\
+  .result-header \{\
+    text-align: center;\
+    margin-bottom: 32px;\
+    width: 100%;\
+  \}\
+  .result-label \{\
+    font-family: 'Bebas Neue', sans-serif;\
+    font-size: 11px;\
+    letter-spacing: 5px;\
+    margin-bottom: 16px;\
+  \}\
+  .result-type-badge \{\
+    display: inline-block;\
+    font-family: 'Bebas Neue', sans-serif;\
+    font-size: clamp(28px, 6vw, 42px);\
+    letter-spacing: 4px;\
+    padding: 8px 24px;\
+    margin-bottom: 20px;\
+    clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);\
+  \}\
+  .result-title \{\
+    font-family: 'Noto Serif TC', serif;\
+    font-size: clamp(22px, 5vw, 32px);\
+    font-weight: 900;\
+    line-height: 1.4;\
+    margin-bottom: 8px;\
+  \}\
+\
+  .result-card \{\
+    width: 100%;\
+    background: var(--dark-card);\
+    border: 1px solid;\
+    padding: 36px 32px;\
+    margin-bottom: 24px;\
+    position: relative;\
+    overflow: hidden;\
+  \}\
+  .result-card::after \{\
+    content: '';\
+    position: absolute;\
+    bottom: -60px;\
+    right: -60px;\
+    width: 200px;\
+    height: 200px;\
+    border-radius: 50%;\
+    opacity: 0.06;\
+    filter: blur(30px);\
+  \}\
+\
+  .result-quote \{\
+    font-family: 'Noto Serif TC', serif;\
+    font-size: clamp(14px, 3vw, 17px);\
+    font-style: italic;\
+    line-height: 2;\
+    margin-bottom: 24px;\
+    padding-left: 16px;\
+    border-left: 2px solid;\
+    color: rgba(255,255,255,0.9);\
+  \}\
+\
+  .result-desc \{\
+    font-size: 14px;\
+    line-height: 2;\
+    color: rgba(255,255,255,0.6);\
+    letter-spacing: 0.3px;\
+  \}\
+\
+  .result-percent \{\
+    margin-top: 28px;\
+    padding-top: 24px;\
+    border-top: 1px solid rgba(255,255,255,0.08);\
+  \}\
+  .percent-label \{\
+    font-family: 'Bebas Neue', sans-serif;\
+    font-size: 11px;\
+    letter-spacing: 3px;\
+    color: rgba(255,255,255,0.35);\
+    margin-bottom: 10px;\
+  \}\
+  .percent-bar-wrap \{\
+    width: 100%;\
+    height: 3px;\
+    background: rgba(255,255,255,0.08);\
+    margin-bottom: 8px;\
+    position: relative;\
+  \}\
+  .percent-bar-fill \{\
+    height: 100%;\
+    transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);\
+    position: relative;\
+  \}\
+  .percent-bar-fill::after \{\
+    content: '';\
+    position: absolute;\
+    right: -1px;\
+    top: -3px;\
+    width: 9px;\
+    height: 9px;\
+    border-radius: 50%;\
+    background: inherit;\
+  \}\
+  .percent-num \{\
+    font-family: 'Bebas Neue', sans-serif;\
+    font-size: 36px;\
+    line-height: 1;\
+  \}\
+  .percent-text \{\
+    font-size: 12px;\
+    color: rgba(255,255,255,0.4);\
+    letter-spacing: 1px;\
+    margin-top: 4px;\
+  \}\
+\
+  .share-hint \{\
+    font-size: 12px;\
+    color: rgba(255,255,255,0.3);\
+    text-align: center;\
+    letter-spacing: 2px;\
+    margin-top: 8px;\
+    margin-bottom: 16px;\
+  \}\
+\
+  /* Type-specific themes */\
+  .theme-landlord .result-label \{ color: var(--neon-gold); text-shadow: 0 0 20px var(--neon-gold); \}\
+  .theme-landlord .result-type-badge \{ background: var(--neon-gold); color: #000; \}\
+  .theme-landlord .result-title \{ color: var(--neon-gold); text-shadow: 0 0 30px rgba(255,215,0,0.5); \}\
+  .theme-landlord .result-card \{ border-color: rgba(255,215,0,0.3); box-shadow: 0 0 40px rgba(255,215,0,0.08); \}\
+  .theme-landlord .result-card::after \{ background: var(--neon-gold); \}\
+  .theme-landlord .result-quote \{ border-color: var(--neon-gold); \}\
+  .theme-landlord .percent-num \{ color: var(--neon-gold); \}\
+  .theme-landlord .percent-bar-fill \{ background: linear-gradient(90deg, #b8860b, var(--neon-gold)); box-shadow: 0 0 12px var(--neon-gold); \}\
+  .theme-landlord .percent-bar-fill::after \{ box-shadow: 0 0 8px var(--neon-gold); \}\
+\
+  .theme-nurse .result-label \{ color: var(--neon-cyan); text-shadow: var(--glow-cyan); \}\
+  .theme-nurse .result-type-badge \{ background: var(--neon-cyan); color: #000; \}\
+  .theme-nurse .result-title \{ color: var(--neon-cyan); text-shadow: 0 0 30px rgba(0,245,255,0.5); \}\
+  .theme-nurse .result-card \{ border-color: rgba(0,245,255,0.3); box-shadow: 0 0 40px rgba(0,245,255,0.08); \}\
+  .theme-nurse .result-card::after \{ background: var(--neon-cyan); \}\
+  .theme-nurse .result-quote \{ border-color: var(--neon-cyan); \}\
+  .theme-nurse .percent-num \{ color: var(--neon-cyan); \}\
+  .theme-nurse .percent-bar-fill \{ background: linear-gradient(90deg, #006b6b, var(--neon-cyan)); box-shadow: var(--glow-cyan); \}\
+  .theme-nurse .percent-bar-fill::after \{ box-shadow: 0 0 8px var(--neon-cyan); \}\
+\
+  .theme-wife .result-label \{ color: var(--neon-pink); text-shadow: var(--glow-pink); \}\
+  .theme-wife .result-type-badge \{ background: var(--neon-pink); color: #fff; \}\
+  .theme-wife .result-title \{ color: var(--neon-pink); text-shadow: 0 0 30px rgba(255,45,120,0.5); \}\
+  .theme-wife .result-card \{ border-color: rgba(255,45,120,0.3); box-shadow: 0 0 40px rgba(255,45,120,0.08); \}\
+  .theme-wife .result-card::after \{ background: var(--neon-pink); \}\
+  .theme-wife .result-quote \{ border-color: var(--neon-pink); \}\
+  .theme-wife .percent-num \{ color: var(--neon-pink); \}\
+  .theme-wife .percent-bar-fill \{ background: linear-gradient(90deg, #8b0040, var(--neon-pink)); box-shadow: var(--glow-pink); \}\
+  .theme-wife .percent-bar-fill::after \{ box-shadow: 0 0 8px var(--neon-pink); \}\
+\
+  /* ===== IMAGE BLOCK ===== */\
+  .poster-section \{\
+    width: 100%;\
+    margin-bottom: 24px;\
+  \}\
+\
+  .poster-upload-wrap \{\
+    width: 100%;\
+    aspect-ratio: 9 / 16;\
+    position: relative;\
+    border: 1px dashed rgba(255,255,255,0.2);\
+    overflow: hidden;\
+    background: rgba(255,255,255,0.02);\
+    cursor: pointer;\
+    transition: border-color 0.3s;\
+  \}\
+  .poster-upload-wrap:hover \{ border-color: rgba(0,245,255,0.5); \}\
+\
+  .poster-upload-wrap img \{\
+    width: 100%;\
+    height: 100%;\
+    object-fit: cover;\
+    display: block;\
+  \}\
+\
+  .poster-placeholder \{\
+    position: absolute;\
+    inset: 0;\
+    display: flex;\
+    flex-direction: column;\
+    align-items: center;\
+    justify-content: center;\
+    gap: 12px;\
+    pointer-events: none;\
+  \}\
+  .poster-placeholder-icon \{\
+    font-size: 32px;\
+    opacity: 0.3;\
+  \}\
+  .poster-placeholder-text \{\
+    font-family: 'Bebas Neue', sans-serif;\
+    font-size: 12px;\
+    letter-spacing: 3px;\
+    color: rgba(255,255,255,0.3);\
+  \}\
+  .poster-placeholder-sub \{\
+    font-size: 11px;\
+    color: rgba(255,255,255,0.2);\
+    letter-spacing: 1px;\
+  \}\
+\
+  .poster-overlay \{\
+    position: absolute;\
+    inset: 0;\
+    background: rgba(0,0,0,0);\
+    display: flex;\
+    align-items: center;\
+    justify-content: center;\
+    opacity: 0;\
+    transition: all 0.3s;\
+  \}\
+  .poster-upload-wrap:hover .poster-overlay \{\
+    background: rgba(0,0,0,0.4);\
+    opacity: 1;\
+  \}\
+  .poster-overlay-text \{\
+    font-family: 'Bebas Neue', sans-serif;\
+    font-size: 13px;\
+    letter-spacing: 3px;\
+    color: var(--neon-cyan);\
+    text-shadow: var(--glow-cyan);\
+  \}\
+  #poster-file-input \{ display: none; \}\
+\
+  /* ===== EDITABLE CTA ===== */\
+  .cta-section \{\
+    width: 100%;\
+    margin-bottom: 16px;\
+  \}\
+\
+  .cta-editor \{\
+    background: rgba(255,255,255,0.03);\
+    border: 1px solid rgba(255,255,255,0.1);\
+    padding: 20px;\
+    margin-bottom: 12px;\
+  \}\
+  .cta-editor-label \{\
+    font-family: 'Bebas Neue', sans-serif;\
+    font-size: 10px;\
+    letter-spacing: 3px;\
+    color: rgba(255,255,255,0.3);\
+    margin-bottom: 8px;\
+  \}\
+  .cta-editor input \{\
+    width: 100%;\
+    background: rgba(255,255,255,0.05);\
+    border: 1px solid rgba(255,255,255,0.1);\
+    color: #fff;\
+    font-family: 'Noto Sans TC', sans-serif;\
+    font-size: 14px;\
+    padding: 10px 14px;\
+    margin-bottom: 10px;\
+    outline: none;\
+    transition: border-color 0.2s;\
+  \}\
+  .cta-editor input:focus \{ border-color: var(--neon-cyan); \}\
+  .cta-editor input::placeholder \{ color: rgba(255,255,255,0.25); font-size: 13px; \}\
+  .cta-editor input:last-child \{ margin-bottom: 0; \}\
+\
+  .cta-preview-btn \{\
+    display: block;\
+    width: 100%;\
+    font-family: 'Noto Serif TC', serif;\
+    font-size: 16px;\
+    font-weight: 700;\
+    letter-spacing: 3px;\
+    color: var(--dark-bg);\
+    background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple));\
+    border: none;\
+    padding: 18px 48px;\
+    cursor: pointer;\
+    clip-path: polygon(12px 0%, 100% 0%, calc(100% - 12px) 100%, 0% 100%);\
+    transition: all 0.3s ease;\
+    text-align: center;\
+    text-decoration: none;\
+  \}\
+  .cta-preview-btn:hover \{\
+    transform: translateY(-3px);\
+    filter: brightness(1.2);\
+    box-shadow: var(--glow-cyan);\
+  \}\
+\
+  /* Corner decorations */\
+  .corner-dec \{\
+    position: fixed;\
+    width: 80px;\
+    height: 80px;\
+    pointer-events: none;\
+    z-index: 0;\
+  \}\
+  .corner-dec.tl \{ top: 20px; left: 20px; border-top: 1px solid rgba(0,245,255,0.3); border-left: 1px solid rgba(0,245,255,0.3); \}\
+  .corner-dec.br \{ bottom: 20px; right: 20px; border-bottom: 1px solid rgba(255,45,120,0.3); border-right: 1px solid rgba(255,45,120,0.3); \}\
+\
+  @media (max-width: 480px) \{\
+    .container \{ padding: 16px; \}\
+    .question-card \{ padding: 28px 20px; \}\
+    .result-card \{ padding: 28px 20px; \}\
+  \}\
+</style>\
+</head>\
+<body>\
+\
+<div class="corner-dec tl"></div>\
+<div class="corner-dec br"></div>\
+<div class="particles" id="particles"></div>\
+\
+<div class="container">\
+\
+  <!-- ===== INTRO ===== -->\
+  <div class="screen active" id="screen-intro">\
+    <div class="intro-badge">SPECIAL EVENT \'d7 FATE TEST</div>\
+    <h1 class="intro-title">\uc0\u21629 \u36939 \u30340 \u30456 \u36935 </h1>\
+    <div class="intro-sub">\uc0\u20320 \u20497 \u30340 \u25925 \u20107 </div>\
+    <div class="neon-divider"></div>\
+    <p class="intro-desc">\
+      \uc0\u27599 \u19968 \u27425 \u30456 \u36935 \u65292 \u37117 \u26159 \u21629 \u36939 \u31934 \u24515 \u32232 \u25490 \u30340 \u21127 \u26412 \u12290 <br>\
+      \uc0\u20845 \u36947 \u36984 \u25799 \u65292 \u25581 \u38283 \u20320 \u33287 \u20182 \u20043 \u38291 <br>\
+      \uc0\u38577 \u34255 \u22312 \u24179 \u34892 \u26178 \u31354 \u35041 \u30340 \u37027 \u27573 \u32227 \u20998 \u12290 \
+    </p>\
+    <button class="btn-main" onclick="startQuiz()">\uc0\u38283 \u22987 \u28204 \u35430 </button>\
+  </div>\
+\
+  <!-- ===== QUIZ ===== -->\
+  <div class="screen" id="screen-quiz">\
+    <div class="progress-wrap">\
+      <div class="progress-label">\
+        <span id="prog-text">SCENE 01 / 06</span>\
+        <span id="prog-pct">0%</span>\
+      </div>\
+      <div class="progress-bar"><div class="progress-fill" id="prog-fill" style="width:0%"></div></div>\
+    </div>\
+    <div class="scene-tag" id="scene-tag">\'97 \uc0\u31532 \u19968 \u24149  \'97</div>\
+    <div class="question-card">\
+      <div class="question-num" id="q-num">01</div>\
+      <div class="question-text" id="q-text"></div>\
+      <div class="question-context" id="q-context"></div>\
+    </div>\
+    <div class="options-grid" id="options-grid"></div>\
+  </div>\
+\
+  <!-- ===== LOADING ===== -->\
+  <div class="screen" id="screen-loading">\
+    <div class="loading-wrap">\
+      <div class="loading-ring"></div>\
+      <div class="loading-text">\uc0\u21629 \u36939 \u35336 \u31639 \u20013 \u8943 </div>\
+    </div>\
+  </div>\
+\
+  <!-- ===== RESULT ===== -->\
+  <div class="screen" id="screen-result">\
+    <div class="result-header" id="result-header">\
+      <div class="result-label" id="r-label">YOUR STORY IS</div>\
+      <div class="result-type-badge" id="r-badge">\'97</div>\
+      <div class="result-title" id="r-title">\'97</div>\
+    </div>\
+    <div class="result-card" id="result-card">\
+      <div class="result-quote" id="r-quote">\'97</div>\
+      <div class="result-desc" id="r-desc">\'97</div>\
+      <div class="result-percent">\
+        <div class="percent-label">CONTRACT RATE  \'b7  \uc0\u22865 \u21512 \u25351 \u25976 </div>\
+        <div class="percent-bar-wrap">\
+          <div class="percent-bar-fill" id="r-bar" style="width:0%"></div>\
+        </div>\
+        <div class="percent-num" id="r-pct">0%</div>\
+        <div class="percent-text">\uc0\u20320 \u20497 \u20043 \u38291 \u30340 \u21629 \u36939 \u36899 \u32080 \u24375 \u24230 </div>\
+      </div>\
+    </div>\
+    <div class="share-hint">\uc0\u10022  \u25130 \u22294 \u20998 \u20139 \u65292 \u35731 \u26356 \u22810 \u20154 \u30475 \u35211 \u20320 \u20497 \u30340 \u25925 \u20107  \u10022 </div>\
+\
+    <!-- \uc0\u22294 \u29255 \u21312 \u22602  9:16 -->\
+    <div class="poster-section">\
+      <input type="file" id="poster-file-input" accept="image/*" onchange="handlePosterUpload(event)">\
+      <div class="poster-upload-wrap" onclick="document.getElementById('poster-file-input').click()">\
+        <div class="poster-placeholder" id="poster-placeholder">\
+          <div class="poster-placeholder-icon">\uc0\u65291 </div>\
+          <div class="poster-placeholder-text">\uc0\u19978 \u20659 \u26126 \u26143 \u22294 \u29255 </div>\
+          <div class="poster-placeholder-sub">\uc0\u24314 \u35696 \u27604 \u20363  9:16 \'b7 JPG / PNG</div>\
+        </div>\
+        <img id="poster-img" src="" alt="" style="display:none;">\
+        <div class="poster-overlay">\
+          <div class="poster-overlay-text">\uc0\u40670 \u25802 \u26356 \u25563 \u22294 \u29255 </div>\
+        </div>\
+      </div>\
+    </div>\
+\
+    <!-- \uc0\u21487 \u32232 \u36655  CTA -->\
+    <div class="cta-section">\
+      <div class="cta-editor">\
+        <div class="cta-editor-label">\uc0\u10022  CTA \u25353 \u37397 \u35373 \u23450 </div>\
+        <input type="text" id="cta-text-input" placeholder="\uc0\u25353 \u37397 \u25991 \u23383 \u65292 \u20363 \u22914 \u65306 \u31435 \u21363 \u38928 \u32004 \u35211 \u38754 \u26371 " oninput="updateCTA()">\
+        <input type="url" id="cta-link-input" placeholder="\uc0\u36899 \u32080 \u32178 \u22336 \u65292 \u20363 \u22914 \u65306 https://ticket.com/..." oninput="updateCTA()">\
+      </div>\
+      <a id="cta-preview-btn" class="cta-preview-btn" href="#" target="_blank">\uc0\u31435 \u21363 \u38928 \u32004 \u35211 \u38754 \u26371 </a>\
+    </div>\
+\
+    <button class="btn-restart" onclick="restartQuiz()">\uc0\u37325 \u26032 \u28204 \u35430 </button>\
+  </div>\
+\
+</div>\
+\
+<script>\
+const questions = [\
+  \{\
+    scene: "\'97 \uc0\u31532 \u19968 \u24149   \u21021 \u36935  \'97",\
+    text: "\uc0\u20320 \u21083 \u25644 \u36914 \u36889 \u26847 \u32769 \u20844 \u23507 \u65292 \u23565 \u19968 \u20999 \u37117 \u24456 \u38476 \u29983 \u12290 \u28145 \u22812 \u65292 \u20320 \u31361 \u28982 \u32893 \u21040 \u38272 \u22806 \u36208 \u24266 \u20659 \u20358 \u35215 \u24459 \u30340 \u33139 \u27493 \u32882 \u65292 \u26368 \u24460 \u20572 \u22312 \u20320 \u30340 \u38272 \u21069 \u12290 \u20320 \u26371 \u24590 \u40636 \u20570 \u65311 ",\
+    context: "\uc0\u28145 \u22812 \u65292 \u38476 \u29983 \u30340 \u31354 \u38291 \u65292 \u38476 \u29983 \u30340 \u32882 \u38899 \u12290 ",\
+    options: [\
+      \{ text: "\uc0\u36208 \u21040 \u38272 \u37002 \u65292 \u36879 \u36942 \u35987 \u30524 \u25110 \u38272 \u32299 \u20599 \u20599 \u24448 \u22806 \u30475 ", scores: \{ landlord: 3, nurse: 1, wife: 1 \} \},\
+      \{ text: "\uc0\u36538 \u22312 \u24202 \u19978 \u20551 \u35037 \u30561 \u33879 \u65292 \u23631 \u20303 \u21628 \u21560 \u38748 \u35264 \u20854 \u35722 ", scores: \{ landlord: 1, nurse: 2, wife: 3 \} \},\
+      \{ text: "\uc0\u38548 \u33879 \u38272 \u22823 \u32882 \u21839 \u65306 \u12300 \u35531 \u21839 \u26159 \u21738 \u20301 \u65311 \u12301 \u25110 \u31435 \u21051 \u20659 \u35338 \u24687 \u32102 \u25151 \u26481 ", scores: \{ landlord: 2, nurse: 3, wife: 0 \} \},\
+      \{ text: "\uc0\u25343 \u33879 \u38450 \u36523 \u29289 \u21697 \u65292 \u29467 \u28982 \u25226 \u38272 \u25171 \u38283 \u30475 \u26159 \u35504 ", scores: \{ landlord: 0, nurse: 0, wife: 2 \} \}\
+    ]\
+  \},\
+  \{\
+    scene: "\'97 \uc0\u31532 \u20108 \u24149   \u36317 \u38626  \'97",\
+    text: "\uc0\u21407 \u20358 \u26159 \u20303 \u22312 \u38548 \u22721 \u30340 \u37168 \u23621 \u12290 \u37027 \u26159 \u20320 \u20497 \u31532 \u19968 \u27425 \u22235 \u30446 \u30456 \u23565 \u65292 \u20182 \u30340 \u30524 \u31070 \u28145 \u36995 \u65292 \u35731 \u20320 \u30636 \u38291 \u29986 \u29983 \u20102 \u19968 \u31278 \u35498 \u19981 \u20986 \u30340 \u30064 \u27171 \u24863 \u12290 \u37027 \u31278 \u24863 \u35258 \u26368 \u20687 \u20160 \u40636 \u65311 ",\
+    context: "\uc0\u20320 \u20497 \u36996 \u27794 \u35498 \u36942 \u19968 \u21477 \u35441 \u65292 \u20294 \u26576 \u31278 \u26481 \u35199 \u24050 \u32147 \u24708 \u24708 \u31227 \u21205 \u20102 \u12290 ",\
+    options: [\
+      \{ text: "\uc0\u20037 \u36949 \u30340 \u28331 \u26262 \u65292 \u20687 \u26159 \u22312 \u21738 \u35041 \u35211 \u36942 \u30340 \u29087 \u20154 ", scores: \{ landlord: 2, nurse: 1, wife: 3 \} \},\
+      \{ text: "\uc0\u24118 \u33879 \u19968 \u40670 \u30130 \u24970 \u33287 \u25925 \u20107 \u65292 \u35731 \u20154 \u24456 \u24819 \u25506 \u31350 ", scores: \{ landlord: 3, nurse: 2, wife: 1 \} \},\
+      \{ text: "\uc0\u37555 \u21033 \u21371 \u23560 \u27880 \u65292 \u24439 \u24447 \u33021 \u19968 \u30524 \u30475 \u31359 \u20320 ", scores: \{ landlord: 1, nurse: 3, wife: 2 \} \},\
+      \{ text: "\uc0\u28331 \u26580 \u32780 \u23458 \u27683 \u65292 \u20445 \u25345 \u33879 \u23436 \u32654 \u30340 \u31150 \u35980 \u36317 \u38626 ", scores: \{ landlord: 0, nurse: 2, wife: 1 \} \}\
+    ]\
+  \},\
+  \{\
+    scene: "\'97 \uc0\u31532 \u19977 \u24149   \u35010 \u32299  \'97",\
+    text: "\uc0\u24190 \u22825 \u24460 \u20320 \u29983 \u30149 \u30332 \u20102 \u20302 \u29138 \u12290 \u27491 \u30070 \u20320 \u25972 \u20491 \u20154 \u36855 \u36855 \u31946 \u31946 \u26178 \u65292 \u38272 \u37428 \u38911 \u20102 \u65292 \u20182 \u25343 \u33879 \u36864 \u29138 \u34277 \u31449 \u22312 \u38272 \u21475 \u12290 \u20320 \u30340 \u31532 \u19968 \u21453 \u25033 \u26159 \u65311 ",\
+    context: "\uc0\u20320 \u19981 \u32722 \u24931 \u34987 \u20154 \u29031 \u39015 \u65292 \u20294 \u27492 \u21051 \u20320 \u36899 \u31449 \u31337 \u37117 \u26377 \u40670 \u22256 \u38627 \u12290 ",\
+    options: [\
+      \{ text: "\uc0\u24863 \u21040 \u19968 \u32114 \u23607 \u23596 \u65292 \u19968 \u37002 \u36947 \u35613 \u19968 \u37002 \u24819 \u25226 \u36523 \u39636 \u25803 \u22312 \u38272 \u24460 ", scores: \{ landlord: 2, nurse: 0, wife: 3 \} \},\
+      \{ text: "\uc0\u39686 \u20102 \u19968 \u21475 \u27683 \u65292 \u19979 \u24847 \u35672 \u25226 \u38272 \u38283 \u22823 \u19968 \u40670 \u35731 \u20182 \u36914 \u20358 ", scores: \{ landlord: 3, nurse: 2, wife: 1 \} \},\
+      \{ text: "\uc0\u26377 \u40670 \u35686 \u24789 \u22320 \u21839 \u20182 \u65306 \u12300 \u20320 \u24590 \u40636 \u30693 \u36947 \u25105 \u29983 \u30149 \u20102 \u65311 \u12301 ", scores: \{ landlord: 1, nurse: 3, wife: 0 \} \},\
+      \{ text: "\uc0\u20160 \u40636 \u37117 \u19981 \u24819 \u31649 \u20102 \u65292 \u38918 \u24478 \u22320 \u25509 \u21463 \u20182 \u30340 \u29031 \u39015 ", scores: \{ landlord: 0, nurse: 1, wife: 2 \} \}\
+    ]\
+  \},\
+  \{\
+    scene: "\'97 \uc0\u31532 \u22235 \u24149   \u36984 \u25799  \'97",\
+    text: "\uc0\u26292 \u38632 \u22825 \u65292 \u20182 \u20358 \u24171 \u20320 \u20462 \u29702 \u28431 \u27700 \u30340 \u31383 \u25142 \u65292 \u38632 \u21218 \u22826 \u22823 \u20182 \u26283 \u26178 \u28961 \u27861 \u38626 \u38283 \u12290 \u27785 \u40664 \u20013 \u65292 \u20841 \u20491 \u20154 \u22256 \u22312 \u21516 \u19968 \u20491 \u31354 \u38291 \u35041 \u65292 \u20320 \u26368 \u24819 \u20570 \u20160 \u40636 \u65311 ",\
+    context: "\uc0\u38632 \u32882 \u25226 \u19990 \u30028 \u38548 \u22312 \u22806 \u38754 \u65292 \u21482 \u21097 \u19979 \u20320 \u20497 \u20841 \u20491 \u20154 \u12290 ",\
+    options: [\
+      \{ text: "\uc0\u21435 \u27873 \u20841 \u26479 \u29105 \u33590 \u65292 \u25214 \u20491 \u35441 \u38988 \u32842 \u22825 ", scores: \{ landlord: 3, nurse: 2, wife: 2 \} \},\
+      \{ text: "\uc0\u38748 \u38748 \u30475 \u33879 \u31383 \u22806 \u30340 \u38632 \u65292 \u20139 \u21463 \u36889 \u20221 \u19981 \u29992 \u21193 \u24375 \u35498 \u35441 \u30340 \u27785 \u40664 ", scores: \{ landlord: 1, nurse: 1, wife: 3 \} \},\
+      \{ text: "\uc0\u20551 \u35037 \u24537 \u33879 \u28369 \u25163 \u27231 \u65292 \u20598 \u29246 \u29992 \u39192 \u20809 \u20599 \u20599 \u35264 \u23519 \u20182 ", scores: \{ landlord: 2, nurse: 3, wife: 1 \} \},\
+      \{ text: "\uc0\u20094 \u33030 \u25552 \u35696 \u19968 \u36215 \u25918 \u20491 \u38899 \u27138 \u25110 \u30475 \u37096 \u38651 \u24433 ", scores: \{ landlord: 0, nurse: 0, wife: 2 \} \}\
+    ]\
+  \},\
+  \{\
+    scene: "\'97 \uc0\u31532 \u20116 \u24149   \u36681 \u25240  \'97",\
+    text: "\uc0\u33256 \u36208 \u21069 \u65292 \u20182 \u30475 \u33879 \u20320 \u65292 \u31361 \u28982 \u27794 \u38957 \u27794 \u23614 \u22320 \u35498 \u20102 \u19968 \u21477 \u65306 \u12300 \u21029 \u25812 \u24515 \u65292 \u25105 \u19968 \u30452 \u37117 \u22312 \u12290 \u12301 \u36889 \u21477 \u35441 \u35731 \u20320 \u30340 \u24515 \u36339 \u28431 \u20102 \u19968 \u25293 \u65292 \u20320 \u30452 \u35258 \u20182 \u30495 \u27491 \u30340 \u24847 \u24605 \u26159 \u20160 \u40636 \u65311 ",\
+    context: "\uc0\u36889 \u21477 \u35441 \u27794 \u26377 \u21069 \u22240 \u65292 \u21371 \u35731 \u25972 \u20491 \u25151 \u38291 \u30340 \u31354 \u27683 \u37117 \u19981 \u19968 \u27171 \u20102 \u12290 ",\
+    options: [\
+      \{ text: "\uc0\u12300 \u25105 \u26159 \u20491 \u31281 \u32887 \u30340 \u37168 \u23621 \u65292 \u26377 \u20107 \u38568 \u26178 \u21487 \u20197 \u25214 \u25105 \u12290 \u12301 ", scores: \{ landlord: 3, nurse: 1, wife: 0 \} \},\
+      \{ text: "\uc0\u12300 \u25105 \u26371 \u19968 \u30452 \u23432 \u35703 \u20320 \u12289 \u38506 \u20276 \u20320 \u12290 \u12301 ", scores: \{ landlord: 1, nurse: 3, wife: 2 \} \},\
+      \{ text: "\uc0\u12300 \u20854 \u23526 \u65292 \u25105 \u20497 \u22312 \u24456 \u20037 \u24456 \u20037 \u20197 \u21069 \u23601 \u35469 \u35672 \u20102 \u8943 \u8943 \u12301 ", scores: \{ landlord: 0, nurse: 0, wife: 3 \} \},\
+      \{ text: "\uc0\u12300 \u25105 \u21916 \u27489 \u20320 \u12290 \u12301 \'97\'97\u20294 \u20320 \u27770 \u23450 \u20551 \u35037 \u27794 \u32893 \u25026 ", scores: \{ landlord: 2, nurse: 2, wife: 1 \} \}\
+    ]\
+  \},\
+  \{\
+    scene: "\'97 \uc0\u32066 \u24149   \u21629 \u36939  \'97",\
+    text: "\uc0\u22914 \u26524 \u36889 \u27573 \u25925 \u20107 \u26371 \u23450 \u26684 \u22312 \u26368 \u24460 \u19968 \u20491 \u30059 \u38754 \u65292 \u20320 \u24076 \u26395 \u20320 \u20497 \u30340 \u32080 \u23616 \u26159 \u21738 \u19968 \u31278 \u22580 \u26223 \u65311 ",\
+    context: "\uc0\u38281 \u19978 \u30524 \u30555 \u65292 \u35731 \u30452 \u35258 \u22238 \u31572 \u12290 ",\
+    options: [\
+      \{ text: "\uc0\u40643 \u26127 \u26178 \u20998 \u65292 \u20841 \u20491 \u20154 \u31449 \u22312 \u20844 \u23507 \u38914 \u27155 \u21561 \u39080 \u65292 \u30475 \u33879 \u22478 \u24066 \u30340 \u22812 \u26223 \u20142 \u36215 ", scores: \{ landlord: 3, nurse: 1, wife: 2 \} \},\
+      \{ text: "\uc0\u26576 \u20491 \u38525 \u20809 \u28753 \u33853 \u30340 \u28165 \u26216 \u65292 \u22312 \u24282 \u25151 \u35041 \u19968 \u20154 \u20570 \u21520 \u21496 \u12289 \u19968 \u20154 \u27873 \u21654 \u21857 ", scores: \{ landlord: 1, nurse: 0, wife: 3 \} \},\
+      \{ text: "\uc0\u22312 \u19968 \u20491 \u20805 \u28415 \u38695 \u27683 \u30340 \u28779 \u36554 \u31449 \u65292 \u20182 \u24494 \u31505 \u33879 \u23565 \u20320 \u25582 \u25163 \u36947 \u21029 ", scores: \{ landlord: 0, nurse: 2, wife: 1 \} \},\
+      \{ text: "\uc0\u19981 \u38656 \u35201 \u20219 \u20309 \u35328 \u35486 \u65292 \u22312 \u20154 \u32676 \u20013 \u23565 \u35222 \u65292 \u28982 \u24460 \u40664 \u22865 \u22320 \u30456 \u35222 \u19968 \u31505 ", scores: \{ landlord: 2, nurse: 3, wife: 2 \} \}\
+    ]\
+  \}\
+];\
+\
+const results = \{\
+  landlord: \{\
+    theme: "theme-landlord",\
+    label: "YOUR STORY IS",\
+    badge: "\uc0\u25151 \u26481 \u31687 ",\
+    title: "\uc0\u26085 \u24120 \u35041 \u30340 \u28331 \u24230 \u65292 \u25165 \u26159 \u26368 \u28145 \u30340 \u24515 \u21205 ",\
+    quote: "\uc0\u12300 \u20320 \u30693 \u36947 \u21966 \u8943 \u8943 \u26377 \u20154 \u31561 \u20320 \u22238 \u23478 \u65292 \u36319 \u26377 \u20491 \u23478 \u65292 \u26159 \u19981 \u19968 \u27171 \u30340 \u12290 \u12301 ",\
+    desc: "\uc0\u20320 \u20497 \u30340 \u32227 \u20998 \u34255 \u22312 \u26368 \u24179 \u20961 \u30340 \u26085 \u24120 \u35041 \'97\'97\u36208 \u24266 \u25830 \u32937 \u12289 \u38272 \u32299 \u36879 \u36914 \u30340 \u20809 \u12289 \u20449 \u31665 \u35041 \u20598 \u29246 \u22810 \u20986 \u20358 \u30340 \u19968 \u23553 \u20449 \u12290 \u20320 \u26159 \u37027 \u31278 \u25026 \u24471 \u22312 \u32048 \u31680 \u35041 \u24863 \u21463 \u28331 \u24230 \u30340 \u20154 \u65292 \u20063 \u27491 \u22240 \u22914 \u27492 \u65292 \u20320 \u27604 \u20219 \u20309 \u20154 \u37117 \u26356 \u26089 \u30332 \u29694 \u65306 \u20182 \u26089 \u23601 \u25226 \u20320 \u25918 \u22312 \u24515 \u19978 \u20102 \u12290 \u36889 \u19981 \u26159 \u36703 \u36703 \u28872 \u28872 \u30340 \u24859 \u24773 \u65292 \u21371 \u26159 \u26368 \u38627 \u34987 \u26367 \u20195 \u30340 \u23384 \u22312 \u12290 ",\
+    percent: 78,\
+    image: "
+\f1\fs26 https://faws.xcity.jp/package/600/image/maker/planetplus/nacr997/f_1755846763_1.jpg
+\f0\fs24 ",       // \uc0\u8592  \u25563 \u25104 \u25151 \u26481 \u31687 \u30340 \u22294 \u29255 \u27284 \u21517 \
+    ctaText: "
+\f2\fs26 \'a5\'f1\'b5\'a7\'a5\'fe\'b8\'d1\'aa\'52\'a1\'47\'c2\'49\'a6\'b9\'ac\'dd\'a9\'d0\'aa\'46\'a6\'62\'bc\'40\'a4\'a4\'aa\'ba\'a4\'df\'be\'f7\'a6\'57\'b3\'f5\'ad\'b1
+\f0\fs24 ",    // \uc0\u8592  \u25563 \u25104 \u25151 \u26481 \u31687 \u30340 \u25353 \u37397 \u25991 \u23383 \
+    ctaLink: "
+\f1\fs26 https://tc.xcity.jp/avod/detail?id=203152
+\f0\fs24 "                 // \uc0\u8592  \u25563 \u25104 \u25151 \u26481 \u31687 \u30340 \u31080 \u21209 \u36899 \u32080 \
+  \},\
+  nurse: \{\
+    theme: "theme-nurse",\
+    label: "YOUR STORY IS",\
+    badge: "\uc0\u30475 \u35703 \u24107 \u31687 ",\
+    title: "\uc0\u22312 \u20320 \u26368 \u33030 \u24369 \u30340 \u26178 \u21051 \u65292 \u20182 \u36984 \u25799 \u30041 \u19979 \u20358 ",\
+    quote: "\uc0\u12300 \u25105 \u30340 \u24037 \u20316 \u26159 \u29031 \u39015 \u24739 \u32773 \u65292 \u20294 \u29031 \u39015 \u20320 \u36889 \u20214 \u20107 \u65292 \u24478 \u19968 \u38283 \u22987 \u23601 \u19981 \u26159 \u24037 \u20316 \u12290 \u12301 ",\
+    desc: "\uc0\u20320 \u20497 \u30340 \u25925 \u20107 \u24478 \u19968 \u27425 \u19981 \u23565 \u31561 \u30340 \u30456 \u36935 \u38283 \u22987 \'97\'97\u20320 \u38656 \u35201 \u34987 \u29031 \u39015 \u65292 \u20182 \u24688 \u22909 \u20986 \u29694 \u12290 \u20294 \u28472 \u28472 \u22320 \u65292 \u30028 \u32218 \u27169 \u31946 \u20102 \u12290 \u20320 \u38283 \u22987 \u26399 \u24453 \u20182 \u25512 \u38272 \u36914 \u20358 \u30340 \u32882 \u38899 \u65292 \u20182 \u38283 \u22987 \u35352 \u20303 \u20320 \u21916 \u27489 \u30340 \u28331 \u24230 \u12290 \u20320 \u26159 \u37027 \u31278 \u32722 \u24931 \u25744 \u33879 \u35498 \u12300 \u25105 \u27794 \u20107 \u12301 \u30340 \u20154 \u65292 \u20294 \u22312 \u20182 \u38754 \u21069 \u65292 \u20320 \u31532 \u19968 \u27425 \u39000 \u24847 \u25215 \u35469 \u65306 \u12300 \u25105 \u38656 \u35201 \u20320 \u12290 \u12301 ",\
+    percent: 85,\
+    image: "
+\f1\fs26 https://faws.xcity.jp/package/600/image/maker/planetplus/nacr897/f_1739844993_1.jpg
+\f0\fs24 ",          // \uc0\u8592  \u25563 \u25104 \u30475 \u35703 \u24107 \u31687 \u30340 \u22294 \u29255 \u27284 \u21517 \
+    ctaText: "
+\f2\fs26 \'c0\'f8\'c2\'a1\'b8\'c9\'b5\'b9\'af\'b8\'a1\'47\'ad\'ab\'b7\'c5\'ac\'dd\'c5\'40\'ae\'76\'a6\'57\'b3\'f5\'ad\'b1\'bb\'50\'b8\'67\'a8\'e5\'a5\'78\'b5\'fc
+\f0\fs24 ",    // \uc0\u8592  \u25563 \u25104 \u30475 \u35703 \u24107 \u31687 \u30340 \u25353 \u37397 \u25991 \u23383 \
+    ctaLink: "
+\f1\fs26 https://tc.xcity.jp/avod/detail?id=196941
+\f0\fs24 "                 // \uc0\u8592  \u25563 \u25104 \u30475 \u35703 \u24107 \u31687 \u30340 \u31080 \u21209 \u36899 \u32080 \
+  \},\
+  wife: \{\
+    theme: "theme-wife",\
+    label: "YOUR STORY IS",\
+    badge: "\uc0\u32769 \u23110 \u31687 ",\
+    title: "\uc0\u21629 \u20013 \u27880 \u23450 \u65292 \u20320 \u20497 \u26412 \u20358 \u23601 \u26159 \u24444 \u27492 \u30340 \u20154 ",\
+    quote: "\uc0\u12300 \u26377 \u20123 \u20154 \u36935 \u35211 \u26159 \u20598 \u28982 \u65292 \u20294 \u25105 \u36935 \u35211 \u20320 \u65292 \u25105 \u23527 \u39000 \u30456 \u20449 \u26159 \u21629 \u36939 \u12290 \u12301 ",\
+    desc: "\uc0\u20320 \u20497 \u30340 \u32227 \u20998 \u26089 \u22312 \u30456 \u36935 \u20043 \u21069 \u23601 \u24050 \u32147 \u23531 \u22909 \u20102 \u12290 \u20320 \u33021 \u24863 \u35258 \u21040 \u65292 \u31532 \u19968 \u27425 \u35211 \u21040 \u20182 \u30340 \u30636 \u38291 \u65292 \u26377 \u20160 \u40636 \u26481 \u35199 \u24708 \u24708 \u23601 \u23450 \u20301 \u20102 \u12290 \u20320 \u26159 \u37027 \u31278 \u23565 \u24863 \u24773 \u30452 \u35258 \u25935 \u37555 \u12289 \u39000 \u24847 \u20840 \u21147 \u25237 \u20837 \u30340 \u20154 \u12290 \u20182 \u20063 \u19968 \u27171 \'97\'97\u25152 \u20197 \u20320 \u20497 \u19981 \u38656 \u35201 \u22826 \u22810 \u35328 \u35486 \u65292 \u21482 \u38656 \u35201 \u19968 \u20491 \u30524 \u31070 \u65292 \u23601 \u33021 \u30906 \u35469 \u24444 \u27492 \u26159 \u23565 \u30340 \u37027 \u20491 \u20154 \u12290 ",\
+    percent: 92,\
+    image: "
+\f1\fs26 https://faws.xcity.jp/package/600/image/maker/max_a/xvsr713/f_1705310370_1.jpg
+\f0\fs24 ",           // \uc0\u8592  \u25563 \u25104 \u32769 \u23110 \u31687 \u30340 \u22294 \u29255 \u27284 \u21517 \
+    ctaText: "
+\f2\fs26 \'aa\'bd\'c0\'bb\'a6\'d1\'b1\'43\'a6\'62\'a4\'f9\'b3\'f5\'aa\'ba\'b6\'57\'b5\'de\'a4\'cf\'ae\'74\'c2\'49
+\f0\fs24 ",    // \uc0\u8592  \u25563 \u25104 \u32769 \u23110 \u31687 \u30340 \u25353 \u37397 \u25991 \u23383 \
+    ctaLink: "
+\f1\fs26 https://tc.xcity.jp/avod/detail?id=187693
+\f0\fs24 "                 // \uc0\u8592  \u25563 \u25104 \u32769 \u23110 \u31687 \u30340 \u31080 \u21209 \u36899 \u32080 \
+  \}\
+\};\
+\
+let currentQ = 0;\
+let scores = \{ landlord: 0, nurse: 0, wife: 0 \};\
+\
+function showScreen(id) \{\
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));\
+  document.getElementById(id).classList.add('active');\
+\}\
+\
+function startQuiz() \{\
+  currentQ = 0;\
+  scores = \{ landlord: 0, nurse: 0, wife: 0 \};\
+  showScreen('screen-quiz');\
+  renderQuestion();\
+\}\
+\
+function renderQuestion() \{\
+  const q = questions[currentQ];\
+  const pct = Math.round((currentQ / questions.length) * 100);\
+  document.getElementById('prog-text').textContent = `SCENE $\{String(currentQ+1).padStart(2,'0')\} / 06`;\
+  document.getElementById('prog-pct').textContent = `$\{pct\}%`;\
+  document.getElementById('prog-fill').style.width = `$\{pct\}%`;\
+  document.getElementById('scene-tag').textContent = q.scene;\
+  document.getElementById('q-num').textContent = String(currentQ+1).padStart(2,'0');\
+  document.getElementById('q-text').textContent = q.text;\
+  document.getElementById('q-context').textContent = q.context;\
+\
+  const grid = document.getElementById('options-grid');\
+  const labels = ['A', 'B', 'C', 'D'];\
+  grid.innerHTML = q.options.map((opt, i) => `\
+    <button class="option-btn" onclick="selectOption(this, $\{i\})">\
+      <span class="option-label">$\{labels[i]\}</span>$\{opt.text\}\
+    </button>\
+  `).join('');\
+\}\
+\
+function selectOption(btn, idx) \{\
+  btn.classList.add('selected');\
+  const opt = questions[currentQ].options[idx];\
+  Object.keys(opt.scores).forEach(k => scores[k] += opt.scores[k]);\
+\
+  setTimeout(() => \{\
+    currentQ++;\
+    if (currentQ < questions.length) \{\
+      renderQuestion();\
+    \} else \{\
+      showScreen('screen-loading');\
+      setTimeout(showResult, 2200);\
+    \}\
+  \}, 500);\
+\}\
+\
+function showResult() \{\
+  const winner = Object.entries(scores).sort((a,b) => b[1]-a[1])[0][0];\
+  const r = results[winner];\
+\
+  document.getElementById('screen-result').className = `screen $\{r.theme\}`;\
+  document.getElementById('r-label').textContent = r.label;\
+  document.getElementById('r-badge').textContent = r.badge;\
+  document.getElementById('r-title').textContent = r.title;\
+  document.getElementById('r-quote').textContent = r.quote;\
+  document.getElementById('r-desc').textContent = r.desc;\
+\
+  // \uc0\u22871 \u29992 \u21508 \u32080 \u23616 \u30340 \u22294 \u29255 \
+  const img = document.getElementById('poster-img');\
+  const placeholder = document.getElementById('poster-placeholder');\
+  img.src = r.image;\
+  img.style.display = 'block';\
+  placeholder.style.display = 'none';\
+\
+  // \uc0\u22871 \u29992 \u21508 \u32080 \u23616 \u30340  CTA\
+  const btn = document.getElementById('cta-preview-btn');\
+  btn.textContent = r.ctaText;\
+  btn.href = r.ctaLink;\
+\
+  // \uc0\u38577 \u34255 \u32232 \u36655 \u22120 \u65288 \u35370 \u23458 \u19981 \u38656 \u35201 \u30475 \u21040 \u65289 \
+  document.querySelector('.cta-editor').style.display = 'none';\
+\
+  showScreen('screen-result');\
+\
+  // Animate bar\
+  setTimeout(() => \{\
+    document.getElementById('r-bar').style.width = `$\{r.percent\}%`;\
+    let n = 0;\
+    const el = document.getElementById('r-pct');\
+    const interval = setInterval(() => \{\
+      n++;\
+      el.textContent = n + '%';\
+      if (n >= r.percent) clearInterval(interval);\
+    \}, 18);\
+  \}, 300);\
+\}\
+\
+function handlePosterUpload(event) \{\
+  const file = event.target.files[0];\
+  if (!file) return;\
+  const reader = new FileReader();\
+  reader.onload = (e) => \{\
+    const img = document.getElementById('poster-img');\
+    img.src = e.target.result;\
+    img.style.display = 'block';\
+    document.getElementById('poster-placeholder').style.display = 'none';\
+  \};\
+  reader.readAsDataURL(file);\
+\}\
+\
+function updateCTA() \{\
+  const text = document.getElementById('cta-text-input').value.trim();\
+  const link = document.getElementById('cta-link-input').value.trim();\
+  const btn = document.getElementById('cta-preview-btn');\
+  btn.textContent = text || '\uc0\u31435 \u21363 \u38928 \u32004 \u35211 \u38754 \u26371 ';\
+  btn.href = link || '#';\
+\}\
+\
+\
+function restartQuiz() \{\
+  document.getElementById('screen-result').className = 'screen';\
+  startQuiz();\
+\}\
+\
+// Generate particles\
+function initParticles() \{\
+  const container = document.getElementById('particles');\
+  const colors = ['#ff2d78', '#00f5ff', '#bf5fff', '#ffd700'];\
+  for (let i = 0; i < 35; i++) \{\
+    const p = document.createElement('div');\
+    p.className = 'particle';\
+    p.style.cssText = `\
+      left: $\{Math.random() * 100\}%;\
+      width: $\{Math.random() < 0.5 ? 2 : 3\}px;\
+      height: $\{Math.random() < 0.5 ? 2 : 3\}px;\
+      background: $\{colors[Math.floor(Math.random() * colors.length)]\};\
+      box-shadow: 0 0 6px $\{colors[Math.floor(Math.random() * colors.length)]\};\
+      animation-duration: $\{6 + Math.random() * 12\}s;\
+      animation-delay: $\{Math.random() * 10\}s;\
+      --drift: $\{(Math.random() - 0.5) * 100\}px;\
+    `;\
+    container.appendChild(p);\
+  \}\
+\}\
+\
+initParticles();\
+</script>\
+</body>\
+</html>}
