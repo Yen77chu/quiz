@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
@@ -29,7 +30,6 @@
     cursor: default;
   }
 
-  /* Animated background grid */
   body::before {
     content: '';
     position: fixed;
@@ -48,7 +48,6 @@
     100% { transform: translateY(60px); }
   }
 
-  /* Floating particles */
   .particles {
     position: fixed;
     inset: 0;
@@ -83,7 +82,6 @@
     justify-content: center;
   }
 
-  /* ===== SCREENS ===== */
   .screen { display: none; width: 100%; animation: fadeIn 0.6s ease; }
   .screen.active { display: flex; flex-direction: column; align-items: center; }
   @keyframes fadeIn {
@@ -91,7 +89,6 @@
     to { opacity: 1; transform: translateY(0); }
   }
 
-  /* ===== INTRO SCREEN ===== */
   .intro-badge {
     font-family: 'Bebas Neue', sans-serif;
     font-size: 11px;
@@ -149,7 +146,6 @@
     box-shadow: var(--glow-cyan);
   }
 
-  /* ===== BUTTONS ===== */
   .btn-main {
     font-family: 'Noto Serif TC', serif;
     font-size: 16px;
@@ -189,7 +185,6 @@
     box-shadow: var(--glow-cyan);
   }
 
-  /* ===== QUIZ SCREEN ===== */
   .progress-wrap {
     width: 100%;
     margin-bottom: 32px;
@@ -332,7 +327,6 @@
     opacity: 0.7;
   }
 
-  /* ===== LOADING ===== */
   .loading-wrap {
     display: flex;
     flex-direction: column;
@@ -358,7 +352,6 @@
     animation: pulse 1.5s ease-in-out infinite;
   }
 
-  /* ===== RESULT SCREEN ===== */
   .result-header {
     text-align: center;
     margin-bottom: 32px;
@@ -481,7 +474,6 @@
     margin-bottom: 16px;
   }
 
-  /* Type-specific themes */
   .theme-landlord .result-label { color: var(--neon-gold); text-shadow: 0 0 20px var(--neon-gold); }
   .theme-landlord .result-type-badge { background: var(--neon-gold); color: #000; }
   .theme-landlord .result-title { color: var(--neon-gold); text-shadow: 0 0 30px rgba(255,215,0,0.5); }
@@ -518,49 +510,25 @@
     margin-bottom: 24px;
   }
 
-  .poster-upload-wrap {
+  .poster-link-wrap {
+    display: block;
     width: 100%;
     aspect-ratio: 9 / 16;
     position: relative;
-    border: 1px dashed rgba(255,255,255,0.2);
+    border: 1px solid rgba(255,255,255,0.2);
     overflow: hidden;
     background: rgba(255,255,255,0.02);
     cursor: pointer;
     transition: border-color 0.3s;
+    text-decoration: none;
   }
-  .poster-upload-wrap:hover { border-color: rgba(0,245,255,0.5); }
+  .poster-link-wrap:hover { border-color: rgba(0,245,255,0.5); }
 
-  .poster-upload-wrap img {
+  .poster-link-wrap img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
-  }
-
-  .poster-placeholder {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    pointer-events: none;
-  }
-  .poster-placeholder-icon {
-    font-size: 32px;
-    opacity: 0.3;
-  }
-  .poster-placeholder-text {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 12px;
-    letter-spacing: 3px;
-    color: rgba(255,255,255,0.3);
-  }
-  .poster-placeholder-sub {
-    font-size: 11px;
-    color: rgba(255,255,255,0.2);
-    letter-spacing: 1px;
   }
 
   .poster-overlay {
@@ -573,8 +541,8 @@
     opacity: 0;
     transition: all 0.3s;
   }
-  .poster-upload-wrap:hover .poster-overlay {
-    background: rgba(0,0,0,0.4);
+  .poster-link-wrap:hover .poster-overlay {
+    background: rgba(0,0,0,0.35);
     opacity: 1;
   }
   .poster-overlay-text {
@@ -584,42 +552,12 @@
     color: var(--neon-cyan);
     text-shadow: var(--glow-cyan);
   }
-  #poster-file-input { display: none; }
 
-  /* ===== EDITABLE CTA ===== */
+  /* ===== CTA ===== */
   .cta-section {
     width: 100%;
     margin-bottom: 16px;
   }
-
-  .cta-editor {
-    background: rgba(255,255,255,0.03);
-    border: 1px solid rgba(255,255,255,0.1);
-    padding: 20px;
-    margin-bottom: 12px;
-  }
-  .cta-editor-label {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 10px;
-    letter-spacing: 3px;
-    color: rgba(255,255,255,0.3);
-    margin-bottom: 8px;
-  }
-  .cta-editor input {
-    width: 100%;
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(255,255,255,0.1);
-    color: #fff;
-    font-family: 'Noto Sans TC', sans-serif;
-    font-size: 14px;
-    padding: 10px 14px;
-    margin-bottom: 10px;
-    outline: none;
-    transition: border-color 0.2s;
-  }
-  .cta-editor input:focus { border-color: var(--neon-cyan); }
-  .cta-editor input::placeholder { color: rgba(255,255,255,0.25); font-size: 13px; }
-  .cta-editor input:last-child { margin-bottom: 0; }
 
   .cta-preview-btn {
     display: block;
@@ -644,7 +582,6 @@
     box-shadow: var(--glow-cyan);
   }
 
-  /* Corner decorations */
   .corner-dec {
     position: fixed;
     width: 80px;
@@ -731,29 +668,18 @@
     </div>
     <div class="share-hint">✦ 截圖分享，讓更多人看見你們的故事 ✦</div>
 
-    <!-- 圖片區塊 9:16 -->
+    <!-- 圖片區塊：點擊直接跳連結 -->
     <div class="poster-section">
-      <input type="file" id="poster-file-input" accept="image/*" onchange="handlePosterUpload(event)">
-      <div class="poster-upload-wrap" onclick="document.getElementById('poster-file-input').click()">
-        <div class="poster-placeholder" id="poster-placeholder">
-          <div class="poster-placeholder-icon">＋</div>
-          <div class="poster-placeholder-text">上傳明星圖片</div>
-          <div class="poster-placeholder-sub">建議比例 9:16 · JPG / PNG</div>
-        </div>
-        <img id="poster-img" src="" alt="" style="display:none;">
+      <a id="poster-link-wrap" class="poster-link-wrap" href="#" target="_blank">
+        <img id="poster-img" src="" alt="">
         <div class="poster-overlay">
-          <div class="poster-overlay-text">點擊更換圖片</div>
+          <div class="poster-overlay-text">點擊了解更多</div>
         </div>
-      </div>
+      </a>
     </div>
 
-    <!-- 可編輯 CTA -->
+    <!-- CTA 按鈕 -->
     <div class="cta-section">
-      <div class="cta-editor">
-        <div class="cta-editor-label">✦ CTA 按鈕設定</div>
-        <input type="text" id="cta-text-input" placeholder="按鈕文字，例如：立即預約見面會" oninput="updateCTA()">
-        <input type="url" id="cta-link-input" placeholder="連結網址，例如：https://ticket.com/..." oninput="updateCTA()">
-      </div>
       <a id="cta-preview-btn" class="cta-preview-btn" href="#" target="_blank">立即預約見面會</a>
     </div>
 
@@ -841,9 +767,9 @@ const results = {
     quote: "「你知道嗎⋯⋯有人等你回家，跟有個家，是不一樣的。」",
     desc: "你們的緣分藏在最平凡的日常裡——走廊擦肩、門縫透進的光、信箱裡偶爾多出來的一封信。你是那種懂得在細節裡感受溫度的人，也正因如此，你比任何人都更早發現：他早就把你放在心上了。這不是轟轟烈烈的愛情，卻是最難被替代的存在。",
     percent: 78,
-    image: "https://i.meee.com.tw/Vow9E2u.png",       // ← 換成房東篇的圖片檔名
-    ctaText: "伏筆全解析：點此看房東在劇中的心機名場面",    // ← 換成房東篇的按鈕文字
-    ctaLink: "https://tc.xcity.jp/avod/detail?id=203152"                 // ← 換成房東篇的票務連結
+    image: "https://i.meee.com.tw/Vow9E2u.png",
+    ctaText: "伏筆全解析：點此看房東在劇中的心機名場面",
+    ctaLink: "https://tc.xcity.jp/avod/detail?id=203152"
   },
   nurse: {
     theme: "theme-nurse",
@@ -853,9 +779,9 @@ const results = {
     quote: "「我的工作是照顧患者，但照顧你這件事，從一開始就不是工作。」",
     desc: "你們的故事從一次不對等的相遇開始——你需要被照顧，他恰好出現。但漸漸地，界線模糊了。你開始期待他推門進來的聲音，他開始記住你喜歡的溫度。你是那種習慣撐著說「我沒事」的人，但在他面前，你第一次願意承認：「我需要你。」",
     percent: 85,
-    image: "https://i.meee.com.tw/kwiLaH8.png",          // ← 換成看護師篇的圖片檔名
-    ctaText: "療癒補給站：重溫看護師名場面與經典台詞",    // ← 換成看護師篇的按鈕文字
-    ctaLink: "https://tc.xcity.jp/avod/detail?id=196941"                 // ← 換成看護師篇的票務連結
+    image: "https://i.meee.com.tw/kwiLaH8.png",
+    ctaText: "療癒補給站：重溫看護師名場面與經典台詞",
+    ctaLink: "https://tc.xcity.jp/avod/detail?id=196941"
   },
   wife: {
     theme: "theme-wife",
@@ -865,9 +791,9 @@ const results = {
     quote: "「有些人遇見是偶然，但我遇見你，我寧願相信是命運。」",
     desc: "你們的緣分早在相遇之前就已經寫好了。你能感覺到，第一次見到他的瞬間，有什麼東西悄悄就定位了。你是那種對感情直覺敏銳、願意全力投入的人。他也一樣——所以你們不需要太多言語，只需要一個眼神，就能確認彼此是對的那個人。",
     percent: 92,
-    image: "https://i.meee.com.tw/tBOKbyo.png",           // ← 換成老婆篇的圖片檔名
-    ctaText: "直擊老婆在片場的超萌反差點",    // ← 換成老婆篇的按鈕文字
-    ctaLink: "https://tc.xcity.jp/avod/detail?id=187693"                 // ← 換成老婆篇的票務連結
+    image: "https://i.meee.com.tw/tBOKbyo.png",
+    ctaText: "直擊老婆在片場的超萌反差點",
+    ctaLink: "https://tc.xcity.jp/avod/detail?id=187693"
   }
 };
 
@@ -933,20 +859,17 @@ function showResult() {
   document.getElementById('r-quote').textContent = r.quote;
   document.getElementById('r-desc').textContent = r.desc;
 
-  // 套用各結局的圖片
+  // 圖片 + 點擊連結
   const img = document.getElementById('poster-img');
-  const placeholder = document.getElementById('poster-placeholder');
   img.src = r.image;
-  img.style.display = 'block';
-  placeholder.style.display = 'none';
 
-  // 套用各結局的 CTA
+  const linkWrap = document.getElementById('poster-link-wrap');
+  linkWrap.href = r.ctaLink;
+
+  // CTA 按鈕
   const btn = document.getElementById('cta-preview-btn');
   btn.textContent = r.ctaText;
   btn.href = r.ctaLink;
-
-  // 隱藏編輯器（訪客不需要看到）
-  document.querySelector('.cta-editor').style.display = 'none';
 
   showScreen('screen-result');
 
@@ -963,34 +886,11 @@ function showResult() {
   }, 300);
 }
 
-function handlePosterUpload(event) {
-  const file = event.target.files[0];
-  if (!file) return;
-  const reader = new FileReader();
-  reader.onload = (e) => {
-    const img = document.getElementById('poster-img');
-    img.src = e.target.result;
-    img.style.display = 'block';
-    document.getElementById('poster-placeholder').style.display = 'none';
-  };
-  reader.readAsDataURL(file);
-}
-
-function updateCTA() {
-  const text = document.getElementById('cta-text-input').value.trim();
-  const link = document.getElementById('cta-link-input').value.trim();
-  const btn = document.getElementById('cta-preview-btn');
-  btn.textContent = text || '立即預約見面會';
-  btn.href = link || '#';
-}
-
-
 function restartQuiz() {
   document.getElementById('screen-result').className = 'screen';
   startQuiz();
 }
 
-// Generate particles
 function initParticles() {
   const container = document.getElementById('particles');
   const colors = ['#ff2d78', '#00f5ff', '#bf5fff', '#ffd700'];
