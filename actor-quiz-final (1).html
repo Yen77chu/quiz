@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>命運的相遇｜你們的故事</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700;900&family=Bebas+Neue&family=Noto+Sans+TC:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --neon-pink: #ff2d78;
+    --neon-cyan: #00f5ff;
+    --neon-purple: #bf5fff;
+    --neon-gold: #ffd700;
+    --dark-bg: #06030f;
+    --dark-card: #0e0820;
+    --glow-pink: 0 0 20px #ff2d78aa, 0 0 40px #ff2d7855;
+    --glow-cyan: 0 0 20px #00f5ffaa, 0 0 40px #00f5ff55;
+    --glow-purple: 0 0 20px #bf5fffaa, 0 0 40px #bf5fff55;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--dark-bg);
+    color: #fff;
+    font-family: 'Noto Sans TC', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+    cursor: default;
+  }
+
+  /* Animated background grid */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0,245,255,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,245,255,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+    animation: gridMove 20s linear infinite;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  @keyframes gridMove {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(60px); }
+  }
+
+  /* Floating particles */
+  .particles {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+  }
+  .particle {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    border-radius: 50%;
+    animation: float linear infinite;
+  }
+  @keyframes float {
+    0% { transform: translateY(100vh) translateX(0); opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { transform: translateY(-10vh) translateX(var(--drift)); opacity: 0; }
+  }
+
+  .container {
+    position: relative;
+    z-index: 1;
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 20px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* ===== SCREENS ===== */
+  .screen { display: none; width: 100%; animation: fadeIn 0.6s ease; }
+  .screen.active { display: flex; flex-direction: column; align-items: center; }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ===== INTRO SCREEN ===== */
+  .intro-badge {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 11px;
+    letter-spacing: 4px;
+    color: var(--neon-cyan);
+    text-shadow: var(--glow-cyan);
+    border: 1px solid var(--neon-cyan);
+    padding: 6px 16px;
+    margin-bottom: 32px;
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+  }
+
+  .intro-title {
+    font-family: 'Noto Serif TC', serif;
+    font-size: clamp(36px, 8vw, 64px);
+    font-weight: 900;
+    text-align: center;
+    line-height: 1.15;
+    margin-bottom: 8px;
+    background: linear-gradient(135deg, #fff 0%, var(--neon-cyan) 50%, var(--neon-pink) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .intro-sub {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(18px, 4vw, 28px);
+    letter-spacing: 6px;
+    color: var(--neon-pink);
+    text-shadow: var(--glow-pink);
+    text-align: center;
+    margin-bottom: 48px;
+  }
+
+  .intro-desc {
+    font-size: 14px;
+    line-height: 2;
+    color: rgba(255,255,255,0.65);
+    text-align: center;
+    max-width: 420px;
+    margin-bottom: 48px;
+    letter-spacing: 0.5px;
+  }
+
+  .neon-divider {
+    width: 120px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--neon-cyan), transparent);
+    margin: 0 auto 40px;
+    box-shadow: var(--glow-cyan);
+  }
+
+  /* ===== BUTTONS ===== */
+  .btn-main {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: var(--dark-bg);
+    background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple));
+    border: none;
+    padding: 16px 48px;
+    cursor: pointer;
+    position: relative;
+    clip-path: polygon(12px 0%, 100% 0%, calc(100% - 12px) 100%, 0% 100%);
+    transition: all 0.3s ease;
+    text-shadow: none;
+  }
+  .btn-main:hover {
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: var(--glow-cyan);
+    filter: brightness(1.2);
+  }
+  .btn-main:active { transform: translateY(0) scale(0.98); }
+
+  .btn-restart {
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: 13px;
+    letter-spacing: 2px;
+    color: var(--neon-cyan);
+    background: transparent;
+    border: 1px solid var(--neon-cyan);
+    padding: 10px 28px;
+    cursor: pointer;
+    margin-top: 16px;
+    transition: all 0.3s ease;
+  }
+  .btn-restart:hover {
+    background: rgba(0,245,255,0.1);
+    box-shadow: var(--glow-cyan);
+  }
+
+  /* ===== QUIZ SCREEN ===== */
+  .progress-wrap {
+    width: 100%;
+    margin-bottom: 32px;
+  }
+  .progress-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: rgba(255,255,255,0.4);
+    margin-bottom: 10px;
+    font-family: 'Bebas Neue', sans-serif;
+  }
+  .progress-bar {
+    width: 100%;
+    height: 2px;
+    background: rgba(255,255,255,0.1);
+    position: relative;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--neon-cyan), var(--neon-pink));
+    box-shadow: var(--glow-pink);
+    transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .scene-tag {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 11px;
+    letter-spacing: 4px;
+    color: var(--neon-purple);
+    text-shadow: var(--glow-purple);
+    margin-bottom: 16px;
+    text-align: center;
+  }
+
+  .question-card {
+    width: 100%;
+    background: var(--dark-card);
+    border: 1px solid rgba(191,95,255,0.25);
+    padding: 36px 32px;
+    margin-bottom: 24px;
+    position: relative;
+    box-shadow: 0 0 40px rgba(191,95,255,0.1), inset 0 0 60px rgba(0,0,0,0.5);
+  }
+  .question-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--neon-purple), var(--neon-pink), var(--neon-cyan));
+    box-shadow: 0 0 12px var(--neon-pink);
+  }
+
+  .question-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 48px;
+    color: rgba(191,95,255,0.2);
+    position: absolute;
+    top: 16px;
+    right: 24px;
+    line-height: 1;
+  }
+
+  .question-text {
+    font-family: 'Noto Serif TC', serif;
+    font-size: clamp(17px, 3.5vw, 22px);
+    font-weight: 700;
+    line-height: 1.7;
+    color: #fff;
+    margin-bottom: 8px;
+  }
+  .question-context {
+    font-size: 12px;
+    color: rgba(255,255,255,0.4);
+    line-height: 1.8;
+    letter-spacing: 0.5px;
+  }
+
+  .options-grid {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .option-btn {
+    width: 100%;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: rgba(255,255,255,0.8);
+    font-family: 'Noto Serif TC', serif;
+    font-size: 15px;
+    padding: 18px 24px;
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    position: relative;
+    overflow: hidden;
+    line-height: 1.6;
+  }
+  .option-btn::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+    background: linear-gradient(180deg, var(--neon-cyan), var(--neon-pink));
+    transform: scaleY(0);
+    transition: transform 0.25s ease;
+    box-shadow: var(--glow-cyan);
+  }
+  .option-btn:hover {
+    background: rgba(0,245,255,0.07);
+    border-color: rgba(0,245,255,0.4);
+    color: #fff;
+    transform: translateX(6px);
+    box-shadow: inset 0 0 30px rgba(0,245,255,0.05);
+  }
+  .option-btn:hover::before { transform: scaleY(1); }
+  .option-btn.selected {
+    background: rgba(255,45,120,0.1);
+    border-color: var(--neon-pink);
+    color: #fff;
+    transform: translateX(6px);
+    box-shadow: inset 0 0 30px rgba(255,45,120,0.08), var(--glow-pink);
+    pointer-events: none;
+  }
+  .option-btn.selected::before {
+    background: linear-gradient(180deg, var(--neon-pink), var(--neon-purple));
+    transform: scaleY(1);
+    box-shadow: var(--glow-pink);
+  }
+  .option-label {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--neon-cyan);
+    margin-right: 12px;
+    opacity: 0.7;
+  }
+
+  /* ===== LOADING ===== */
+  .loading-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+  }
+  .loading-ring {
+    width: 80px;
+    height: 80px;
+    border: 2px solid rgba(255,255,255,0.05);
+    border-top: 2px solid var(--neon-cyan);
+    border-right: 2px solid var(--neon-pink);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    box-shadow: var(--glow-cyan), inset 0 0 20px rgba(0,245,255,0.1);
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .loading-text {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 14px;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 3px;
+    animation: pulse 1.5s ease-in-out infinite;
+  }
+
+  /* ===== RESULT SCREEN ===== */
+  .result-header {
+    text-align: center;
+    margin-bottom: 32px;
+    width: 100%;
+  }
+  .result-label {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 11px;
+    letter-spacing: 5px;
+    margin-bottom: 16px;
+  }
+  .result-type-badge {
+    display: inline-block;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(28px, 6vw, 42px);
+    letter-spacing: 4px;
+    padding: 8px 24px;
+    margin-bottom: 20px;
+    clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+  }
+  .result-title {
+    font-family: 'Noto Serif TC', serif;
+    font-size: clamp(22px, 5vw, 32px);
+    font-weight: 900;
+    line-height: 1.4;
+    margin-bottom: 8px;
+  }
+
+  .result-card {
+    width: 100%;
+    background: var(--dark-card);
+    border: 1px solid;
+    padding: 36px 32px;
+    margin-bottom: 24px;
+    position: relative;
+    overflow: hidden;
+  }
+  .result-card::after {
+    content: '';
+    position: absolute;
+    bottom: -60px;
+    right: -60px;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    opacity: 0.06;
+    filter: blur(30px);
+  }
+
+  .result-quote {
+    font-family: 'Noto Serif TC', serif;
+    font-size: clamp(14px, 3vw, 17px);
+    font-style: italic;
+    line-height: 2;
+    margin-bottom: 24px;
+    padding-left: 16px;
+    border-left: 2px solid;
+    color: rgba(255,255,255,0.9);
+  }
+
+  .result-desc {
+    font-size: 14px;
+    line-height: 2;
+    color: rgba(255,255,255,0.6);
+    letter-spacing: 0.3px;
+  }
+
+  .result-percent {
+    margin-top: 28px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+  .percent-label {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: rgba(255,255,255,0.35);
+    margin-bottom: 10px;
+  }
+  .percent-bar-wrap {
+    width: 100%;
+    height: 3px;
+    background: rgba(255,255,255,0.08);
+    margin-bottom: 8px;
+    position: relative;
+  }
+  .percent-bar-fill {
+    height: 100%;
+    transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+  }
+  .percent-bar-fill::after {
+    content: '';
+    position: absolute;
+    right: -1px;
+    top: -3px;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: inherit;
+  }
+  .percent-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 36px;
+    line-height: 1;
+  }
+  .percent-text {
+    font-size: 12px;
+    color: rgba(255,255,255,0.4);
+    letter-spacing: 1px;
+    margin-top: 4px;
+  }
+
+  .share-hint {
+    font-size: 12px;
+    color: rgba(255,255,255,0.3);
+    text-align: center;
+    letter-spacing: 2px;
+    margin-top: 8px;
+    margin-bottom: 16px;
+  }
+
+  /* Type-specific themes */
+  .theme-landlord .result-label { color: var(--neon-gold); text-shadow: 0 0 20px var(--neon-gold); }
+  .theme-landlord .result-type-badge { background: var(--neon-gold); color: #000; }
+  .theme-landlord .result-title { color: var(--neon-gold); text-shadow: 0 0 30px rgba(255,215,0,0.5); }
+  .theme-landlord .result-card { border-color: rgba(255,215,0,0.3); box-shadow: 0 0 40px rgba(255,215,0,0.08); }
+  .theme-landlord .result-card::after { background: var(--neon-gold); }
+  .theme-landlord .result-quote { border-color: var(--neon-gold); }
+  .theme-landlord .percent-num { color: var(--neon-gold); }
+  .theme-landlord .percent-bar-fill { background: linear-gradient(90deg, #b8860b, var(--neon-gold)); box-shadow: 0 0 12px var(--neon-gold); }
+  .theme-landlord .percent-bar-fill::after { box-shadow: 0 0 8px var(--neon-gold); }
+
+  .theme-nurse .result-label { color: var(--neon-cyan); text-shadow: var(--glow-cyan); }
+  .theme-nurse .result-type-badge { background: var(--neon-cyan); color: #000; }
+  .theme-nurse .result-title { color: var(--neon-cyan); text-shadow: 0 0 30px rgba(0,245,255,0.5); }
+  .theme-nurse .result-card { border-color: rgba(0,245,255,0.3); box-shadow: 0 0 40px rgba(0,245,255,0.08); }
+  .theme-nurse .result-card::after { background: var(--neon-cyan); }
+  .theme-nurse .result-quote { border-color: var(--neon-cyan); }
+  .theme-nurse .percent-num { color: var(--neon-cyan); }
+  .theme-nurse .percent-bar-fill { background: linear-gradient(90deg, #006b6b, var(--neon-cyan)); box-shadow: var(--glow-cyan); }
+  .theme-nurse .percent-bar-fill::after { box-shadow: 0 0 8px var(--neon-cyan); }
+
+  .theme-wife .result-label { color: var(--neon-pink); text-shadow: var(--glow-pink); }
+  .theme-wife .result-type-badge { background: var(--neon-pink); color: #fff; }
+  .theme-wife .result-title { color: var(--neon-pink); text-shadow: 0 0 30px rgba(255,45,120,0.5); }
+  .theme-wife .result-card { border-color: rgba(255,45,120,0.3); box-shadow: 0 0 40px rgba(255,45,120,0.08); }
+  .theme-wife .result-card::after { background: var(--neon-pink); }
+  .theme-wife .result-quote { border-color: var(--neon-pink); }
+  .theme-wife .percent-num { color: var(--neon-pink); }
+  .theme-wife .percent-bar-fill { background: linear-gradient(90deg, #8b0040, var(--neon-pink)); box-shadow: var(--glow-pink); }
+  .theme-wife .percent-bar-fill::after { box-shadow: 0 0 8px var(--neon-pink); }
+
+  /* ===== IMAGE BLOCK ===== */
+  .poster-section {
+    width: 100%;
+    margin-bottom: 24px;
+  }
+
+  .poster-upload-wrap {
+    width: 100%;
+    aspect-ratio: 9 / 16;
+    position: relative;
+    border: 1px dashed rgba(255,255,255,0.2);
+    overflow: hidden;
+    background: rgba(255,255,255,0.02);
+    cursor: pointer;
+    transition: border-color 0.3s;
+  }
+  .poster-upload-wrap:hover { border-color: rgba(0,245,255,0.5); }
+
+  .poster-upload-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .poster-placeholder {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    pointer-events: none;
+  }
+  .poster-placeholder-icon {
+    font-size: 32px;
+    opacity: 0.3;
+  }
+  .poster-placeholder-text {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 12px;
+    letter-spacing: 3px;
+    color: rgba(255,255,255,0.3);
+  }
+  .poster-placeholder-sub {
+    font-size: 11px;
+    color: rgba(255,255,255,0.2);
+    letter-spacing: 1px;
+  }
+
+  .poster-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: all 0.3s;
+  }
+  .poster-upload-wrap:hover .poster-overlay {
+    background: rgba(0,0,0,0.4);
+    opacity: 1;
+  }
+  .poster-overlay-text {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 13px;
+    letter-spacing: 3px;
+    color: var(--neon-cyan);
+    text-shadow: var(--glow-cyan);
+  }
+  #poster-file-input { display: none; }
+
+  /* ===== EDITABLE CTA ===== */
+  .cta-section {
+    width: 100%;
+    margin-bottom: 16px;
+  }
+
+  .cta-editor {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 20px;
+    margin-bottom: 12px;
+  }
+  .cta-editor-label {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: rgba(255,255,255,0.3);
+    margin-bottom: 8px;
+  }
+  .cta-editor input {
+    width: 100%;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: #fff;
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: 14px;
+    padding: 10px 14px;
+    margin-bottom: 10px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .cta-editor input:focus { border-color: var(--neon-cyan); }
+  .cta-editor input::placeholder { color: rgba(255,255,255,0.25); font-size: 13px; }
+  .cta-editor input:last-child { margin-bottom: 0; }
+
+  .cta-preview-btn {
+    display: block;
+    width: 100%;
+    font-family: 'Noto Serif TC', serif;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: var(--dark-bg);
+    background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple));
+    border: none;
+    padding: 18px 48px;
+    cursor: pointer;
+    clip-path: polygon(12px 0%, 100% 0%, calc(100% - 12px) 100%, 0% 100%);
+    transition: all 0.3s ease;
+    text-align: center;
+    text-decoration: none;
+  }
+  .cta-preview-btn:hover {
+    transform: translateY(-3px);
+    filter: brightness(1.2);
+    box-shadow: var(--glow-cyan);
+  }
+
+  /* Corner decorations */
+  .corner-dec {
+    position: fixed;
+    width: 80px;
+    height: 80px;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .corner-dec.tl { top: 20px; left: 20px; border-top: 1px solid rgba(0,245,255,0.3); border-left: 1px solid rgba(0,245,255,0.3); }
+  .corner-dec.br { bottom: 20px; right: 20px; border-bottom: 1px solid rgba(255,45,120,0.3); border-right: 1px solid rgba(255,45,120,0.3); }
+
+  @media (max-width: 480px) {
+    .container { padding: 16px; }
+    .question-card { padding: 28px 20px; }
+    .result-card { padding: 28px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="corner-dec tl"></div>
+<div class="corner-dec br"></div>
+<div class="particles" id="particles"></div>
+
+<div class="container">
+
+  <!-- ===== INTRO ===== -->
+  <div class="screen active" id="screen-intro">
+    <div class="intro-badge">SPECIAL EVENT × FATE TEST</div>
+    <h1 class="intro-title">命運的相遇</h1>
+    <div class="intro-sub">你們的故事</div>
+    <div class="neon-divider"></div>
+    <p class="intro-desc">
+      每一次相遇，都是命運精心編排的劇本。<br>
+      六道選擇，揭開你與他之間<br>
+      隱藏在平行時空裡的那段緣分。
+    </p>
+    <button class="btn-main" onclick="startQuiz()">開始測試</button>
+  </div>
+
+  <!-- ===== QUIZ ===== -->
+  <div class="screen" id="screen-quiz">
+    <div class="progress-wrap">
+      <div class="progress-label">
+        <span id="prog-text">SCENE 01 / 06</span>
+        <span id="prog-pct">0%</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" id="prog-fill" style="width:0%"></div></div>
+    </div>
+    <div class="scene-tag" id="scene-tag">— 第一幕 —</div>
+    <div class="question-card">
+      <div class="question-num" id="q-num">01</div>
+      <div class="question-text" id="q-text"></div>
+      <div class="question-context" id="q-context"></div>
+    </div>
+    <div class="options-grid" id="options-grid"></div>
+  </div>
+
+  <!-- ===== LOADING ===== -->
+  <div class="screen" id="screen-loading">
+    <div class="loading-wrap">
+      <div class="loading-ring"></div>
+      <div class="loading-text">命運計算中⋯</div>
+    </div>
+  </div>
+
+  <!-- ===== RESULT ===== -->
+  <div class="screen" id="screen-result">
+    <div class="result-header" id="result-header">
+      <div class="result-label" id="r-label">YOUR STORY IS</div>
+      <div class="result-type-badge" id="r-badge">—</div>
+      <div class="result-title" id="r-title">—</div>
+    </div>
+    <div class="result-card" id="result-card">
+      <div class="result-quote" id="r-quote">—</div>
+      <div class="result-desc" id="r-desc">—</div>
+      <div class="result-percent">
+        <div class="percent-label">CONTRACT RATE  ·  契合指數</div>
+        <div class="percent-bar-wrap">
+          <div class="percent-bar-fill" id="r-bar" style="width:0%"></div>
+        </div>
+        <div class="percent-num" id="r-pct">0%</div>
+        <div class="percent-text">你們之間的命運連結強度</div>
+      </div>
+    </div>
+    <div class="share-hint">✦ 截圖分享，讓更多人看見你們的故事 ✦</div>
+
+    <!-- 圖片區塊 9:16 -->
+    <div class="poster-section">
+      <input type="file" id="poster-file-input" accept="image/*" onchange="handlePosterUpload(event)">
+      <div class="poster-upload-wrap" onclick="document.getElementById('poster-file-input').click()">
+        <div class="poster-placeholder" id="poster-placeholder">
+          <div class="poster-placeholder-icon">＋</div>
+          <div class="poster-placeholder-text">上傳明星圖片</div>
+          <div class="poster-placeholder-sub">建議比例 9:16 · JPG / PNG</div>
+        </div>
+        <img id="poster-img" src="" alt="" style="display:none;">
+        <div class="poster-overlay">
+          <div class="poster-overlay-text">點擊更換圖片</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 可編輯 CTA -->
+    <div class="cta-section">
+      <div class="cta-editor">
+        <div class="cta-editor-label">✦ CTA 按鈕設定</div>
+        <input type="text" id="cta-text-input" placeholder="按鈕文字，例如：立即預約見面會" oninput="updateCTA()">
+        <input type="url" id="cta-link-input" placeholder="連結網址，例如：https://ticket.com/..." oninput="updateCTA()">
+      </div>
+      <a id="cta-preview-btn" class="cta-preview-btn" href="#" target="_blank">立即預約見面會</a>
+    </div>
+
+    <button class="btn-restart" onclick="restartQuiz()">重新測試</button>
+  </div>
+
+</div>
+
+<script>
+const questions = [
+  {
+    scene: "— 第一幕  初遇 —",
+    text: "你剛搬進這棟老公寓，對一切都很陌生。深夜，你突然聽到門外走廊傳來規律的腳步聲，最後停在你的門前。你會怎麼做？",
+    context: "深夜，陌生的空間，陌生的聲音。",
+    options: [
+      { text: "走到門邊，透過貓眼或門縫偷偷往外看", scores: { landlord: 3, nurse: 1, wife: 1 } },
+      { text: "躺在床上假裝睡著，屏住呼吸靜觀其變", scores: { landlord: 1, nurse: 2, wife: 3 } },
+      { text: "隔著門大聲問：「請問是哪位？」或立刻傳訊息給房東", scores: { landlord: 2, nurse: 3, wife: 0 } },
+      { text: "拿著防身物品，猛然把門打開看是誰", scores: { landlord: 0, nurse: 0, wife: 2 } }
+    ]
+  },
+  {
+    scene: "— 第二幕  距離 —",
+    text: "原來是住在隔壁的鄰居。那是你們第一次四目相對，他的眼神深邃，讓你瞬間產生了一種說不出的異樣感。那種感覺最像什麼？",
+    context: "你們還沒說過一句話，但某種東西已經悄悄移動了。",
+    options: [
+      { text: "久違的溫暖，像是在哪裡見過的熟人", scores: { landlord: 2, nurse: 1, wife: 3 } },
+      { text: "帶著一點疲憊與故事，讓人很想探究", scores: { landlord: 3, nurse: 2, wife: 1 } },
+      { text: "銳利卻專注，彷彿能一眼看穿你", scores: { landlord: 1, nurse: 3, wife: 2 } },
+      { text: "溫柔而客氣，保持著完美的禮貌距離", scores: { landlord: 0, nurse: 2, wife: 1 } }
+    ]
+  },
+  {
+    scene: "— 第三幕  裂縫 —",
+    text: "幾天後你生病發了低燒。正當你整個人迷迷糊糊時，門鈴響了，他拿著退燒藥站在門口。你的第一反應是？",
+    context: "你不習慣被人照顧，但此刻你連站穩都有點困難。",
+    options: [
+      { text: "感到一絲尷尬，一邊道謝一邊想把身體擋在門後", scores: { landlord: 2, nurse: 0, wife: 3 } },
+      { text: "鬆了一口氣，下意識把門開大一點讓他進來", scores: { landlord: 3, nurse: 2, wife: 1 } },
+      { text: "有點警惕地問他：「你怎麼知道我生病了？」", scores: { landlord: 1, nurse: 3, wife: 0 } },
+      { text: "什麼都不想管了，順從地接受他的照顧", scores: { landlord: 0, nurse: 1, wife: 2 } }
+    ]
+  },
+  {
+    scene: "— 第四幕  選擇 —",
+    text: "暴雨天，他來幫你修理漏水的窗戶，雨勢太大他暫時無法離開。沉默中，兩個人困在同一個空間裡，你最想做什麼？",
+    context: "雨聲把世界隔在外面，只剩下你們兩個人。",
+    options: [
+      { text: "去泡兩杯熱茶，找個話題聊天", scores: { landlord: 3, nurse: 2, wife: 2 } },
+      { text: "靜靜看著窗外的雨，享受這份不用勉強說話的沉默", scores: { landlord: 1, nurse: 1, wife: 3 } },
+      { text: "假裝忙著滑手機，偶爾用餘光偷偷觀察他", scores: { landlord: 2, nurse: 3, wife: 1 } },
+      { text: "乾脆提議一起放個音樂或看部電影", scores: { landlord: 0, nurse: 0, wife: 2 } }
+    ]
+  },
+  {
+    scene: "— 第五幕  轉折 —",
+    text: "臨走前，他看著你，突然沒頭沒尾地說了一句：「別擔心，我一直都在。」這句話讓你的心跳漏了一拍，你直覺他真正的意思是什麼？",
+    context: "這句話沒有前因，卻讓整個房間的空氣都不一樣了。",
+    options: [
+      { text: "「我是個稱職的鄰居，有事隨時可以找我。」", scores: { landlord: 3, nurse: 1, wife: 0 } },
+      { text: "「我會一直守護你、陪伴你。」", scores: { landlord: 1, nurse: 3, wife: 2 } },
+      { text: "「其實，我們在很久很久以前就認識了⋯⋯」", scores: { landlord: 0, nurse: 0, wife: 3 } },
+      { text: "「我喜歡你。」——但你決定假裝沒聽懂", scores: { landlord: 2, nurse: 2, wife: 1 } }
+    ]
+  },
+  {
+    scene: "— 終幕  命運 —",
+    text: "如果這段故事會定格在最後一個畫面，你希望你們的結局是哪一種場景？",
+    context: "閉上眼睛，讓直覺回答。",
+    options: [
+      { text: "黃昏時分，兩個人站在公寓頂樓吹風，看著城市的夜景亮起", scores: { landlord: 3, nurse: 1, wife: 2 } },
+      { text: "某個陽光灑落的清晨，在廚房裡一人做吐司、一人泡咖啡", scores: { landlord: 1, nurse: 0, wife: 3 } },
+      { text: "在一個充滿霧氣的火車站，他微笑著對你揮手道別", scores: { landlord: 0, nurse: 2, wife: 1 } },
+      { text: "不需要任何言語，在人群中對視，然後默契地相視一笑", scores: { landlord: 2, nurse: 3, wife: 2 } }
+    ]
+  }
+];
+
+const results = {
+  landlord: {
+    theme: "theme-landlord",
+    label: "YOUR STORY IS",
+    badge: "房東篇",
+    title: "日常裡的溫度，才是最深的心動",
+    quote: "「你知道嗎⋯⋯有人等你回家，跟有個家，是不一樣的。」",
+    desc: "你們的緣分藏在最平凡的日常裡——走廊擦肩、門縫透進的光、信箱裡偶爾多出來的一封信。你是那種懂得在細節裡感受溫度的人，也正因如此，你比任何人都更早發現：他早就把你放在心上了。這不是轟轟烈烈的愛情，卻是最難被替代的存在。",
+    percent: 78,
+    image: "landlord.jpg",       // ← 換成房東篇的圖片檔名
+    ctaText: "立即預約見面會",    // ← 換成房東篇的按鈕文字
+    ctaLink: "#"                 // ← 換成房東篇的票務連結
+  },
+  nurse: {
+    theme: "theme-nurse",
+    label: "YOUR STORY IS",
+    badge: "看護師篇",
+    title: "在你最脆弱的時刻，他選擇留下來",
+    quote: "「我的工作是照顧患者，但照顧你這件事，從一開始就不是工作。」",
+    desc: "你們的故事從一次不對等的相遇開始——你需要被照顧，他恰好出現。但漸漸地，界線模糊了。你開始期待他推門進來的聲音，他開始記住你喜歡的溫度。你是那種習慣撐著說「我沒事」的人，但在他面前，你第一次願意承認：「我需要你。」",
+    percent: 85,
+    image: "nurse.jpg",          // ← 換成看護師篇的圖片檔名
+    ctaText: "立即預約見面會",    // ← 換成看護師篇的按鈕文字
+    ctaLink: "#"                 // ← 換成看護師篇的票務連結
+  },
+  wife: {
+    theme: "theme-wife",
+    label: "YOUR STORY IS",
+    badge: "老婆篇",
+    title: "命中注定，你們本來就是彼此的人",
+    quote: "「有些人遇見是偶然，但我遇見你，我寧願相信是命運。」",
+    desc: "你們的緣分早在相遇之前就已經寫好了。你能感覺到，第一次見到他的瞬間，有什麼東西悄悄就定位了。你是那種對感情直覺敏銳、願意全力投入的人。他也一樣——所以你們不需要太多言語，只需要一個眼神，就能確認彼此是對的那個人。",
+    percent: 92,
+    image: "wife.jpg",           // ← 換成老婆篇的圖片檔名
+    ctaText: "立即預約見面會",    // ← 換成老婆篇的按鈕文字
+    ctaLink: "#"                 // ← 換成老婆篇的票務連結
+  }
+};
+
+let currentQ = 0;
+let scores = { landlord: 0, nurse: 0, wife: 0 };
+
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+function startQuiz() {
+  currentQ = 0;
+  scores = { landlord: 0, nurse: 0, wife: 0 };
+  showScreen('screen-quiz');
+  renderQuestion();
+}
+
+function renderQuestion() {
+  const q = questions[currentQ];
+  const pct = Math.round((currentQ / questions.length) * 100);
+  document.getElementById('prog-text').textContent = `SCENE ${String(currentQ+1).padStart(2,'0')} / 06`;
+  document.getElementById('prog-pct').textContent = `${pct}%`;
+  document.getElementById('prog-fill').style.width = `${pct}%`;
+  document.getElementById('scene-tag').textContent = q.scene;
+  document.getElementById('q-num').textContent = String(currentQ+1).padStart(2,'0');
+  document.getElementById('q-text').textContent = q.text;
+  document.getElementById('q-context').textContent = q.context;
+
+  const grid = document.getElementById('options-grid');
+  const labels = ['A', 'B', 'C', 'D'];
+  grid.innerHTML = q.options.map((opt, i) => `
+    <button class="option-btn" onclick="selectOption(this, ${i})">
+      <span class="option-label">${labels[i]}</span>${opt.text}
+    </button>
+  `).join('');
+}
+
+function selectOption(btn, idx) {
+  btn.classList.add('selected');
+  const opt = questions[currentQ].options[idx];
+  Object.keys(opt.scores).forEach(k => scores[k] += opt.scores[k]);
+
+  setTimeout(() => {
+    currentQ++;
+    if (currentQ < questions.length) {
+      renderQuestion();
+    } else {
+      showScreen('screen-loading');
+      setTimeout(showResult, 2200);
+    }
+  }, 500);
+}
+
+function showResult() {
+  const winner = Object.entries(scores).sort((a,b) => b[1]-a[1])[0][0];
+  const r = results[winner];
+
+  document.getElementById('screen-result').className = `screen ${r.theme}`;
+  document.getElementById('r-label').textContent = r.label;
+  document.getElementById('r-badge').textContent = r.badge;
+  document.getElementById('r-title').textContent = r.title;
+  document.getElementById('r-quote').textContent = r.quote;
+  document.getElementById('r-desc').textContent = r.desc;
+
+  // 套用各結局的圖片
+  const img = document.getElementById('poster-img');
+  const placeholder = document.getElementById('poster-placeholder');
+  img.src = r.image;
+  img.style.display = 'block';
+  placeholder.style.display = 'none';
+
+  // 套用各結局的 CTA
+  const btn = document.getElementById('cta-preview-btn');
+  btn.textContent = r.ctaText;
+  btn.href = r.ctaLink;
+
+  // 隱藏編輯器（訪客不需要看到）
+  document.querySelector('.cta-editor').style.display = 'none';
+
+  showScreen('screen-result');
+
+  // Animate bar
+  setTimeout(() => {
+    document.getElementById('r-bar').style.width = `${r.percent}%`;
+    let n = 0;
+    const el = document.getElementById('r-pct');
+    const interval = setInterval(() => {
+      n++;
+      el.textContent = n + '%';
+      if (n >= r.percent) clearInterval(interval);
+    }, 18);
+  }, 300);
+}
+
+function handlePosterUpload(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    const img = document.getElementById('poster-img');
+    img.src = e.target.result;
+    img.style.display = 'block';
+    document.getElementById('poster-placeholder').style.display = 'none';
+  };
+  reader.readAsDataURL(file);
+}
+
+function updateCTA() {
+  const text = document.getElementById('cta-text-input').value.trim();
+  const link = document.getElementById('cta-link-input').value.trim();
+  const btn = document.getElementById('cta-preview-btn');
+  btn.textContent = text || '立即預約見面會';
+  btn.href = link || '#';
+}
+
+
+function restartQuiz() {
+  document.getElementById('screen-result').className = 'screen';
+  startQuiz();
+}
+
+// Generate particles
+function initParticles() {
+  const container = document.getElementById('particles');
+  const colors = ['#ff2d78', '#00f5ff', '#bf5fff', '#ffd700'];
+  for (let i = 0; i < 35; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    p.style.cssText = `
+      left: ${Math.random() * 100}%;
+      width: ${Math.random() < 0.5 ? 2 : 3}px;
+      height: ${Math.random() < 0.5 ? 2 : 3}px;
+      background: ${colors[Math.floor(Math.random() * colors.length)]};
+      box-shadow: 0 0 6px ${colors[Math.floor(Math.random() * colors.length)]};
+      animation-duration: ${6 + Math.random() * 12}s;
+      animation-delay: ${Math.random() * 10}s;
+      --drift: ${(Math.random() - 0.5) * 100}px;
+    `;
+    container.appendChild(p);
+  }
+}
+
+initParticles();
+</script>
+</body>
+</html>
